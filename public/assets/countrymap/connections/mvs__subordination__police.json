@@ -1,0 +1,11 @@
+{
+  "id": "mvs__subordination__police",
+  "from": "mvs",
+  "to": "police",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Міністерство внутрішніх справ України -> Національна поліція України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

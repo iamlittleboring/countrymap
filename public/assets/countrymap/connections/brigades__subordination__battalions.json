@@ -1,0 +1,11 @@
+{
+  "id": "brigades__subordination__battalions",
+  "from": "brigades",
+  "to": "battalions",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Бригади -> Батальйони",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

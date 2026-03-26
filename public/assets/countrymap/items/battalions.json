@@ -1,0 +1,49 @@
+{
+  "id": "battalions",
+  "title": "Батальйони",
+  "type": "military",
+  "level": 4,
+  "description": "Підрозділи у складі бригади, які керують ротами.",
+  "details": {
+    "what": "Тактичний рівень у складі бригади.",
+    "reportsTo": [
+      "Бригаді"
+    ],
+    "manages": [
+      "Роти",
+      "Взводи підтримки"
+    ],
+    "functions": [
+      "Виконує бойові задачі на ділянці",
+      "Керує ротами"
+    ],
+    "includes": [
+      "Роти",
+      "Підрозділи підтримки"
+    ],
+    "interactions": [
+      "Взаємодіє із сусідніми батальйонами та штабом бригади"
+    ],
+    "regulations": [
+      "Бойові статути"
+    ],
+    "citizenQuestions": [
+      "Чим батальйон відрізняється від роти?"
+    ]
+  },
+  "children": [],
+  "connections": [
+    "brigades__subordination__battalions"
+  ],
+  "resources": {
+    "site": "https://www.zsu.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://www.zsu.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 950,
+    "y": 1320
+  }
+}

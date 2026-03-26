@@ -1,0 +1,11 @@
+{
+  "id": "constitution__legal__local",
+  "from": "constitution",
+  "to": "local",
+  "type": "legal",
+  "label": "Правова основа",
+  "title": "Конституція України -> Місцева влада",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

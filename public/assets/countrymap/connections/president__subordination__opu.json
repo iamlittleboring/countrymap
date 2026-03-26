@@ -1,0 +1,11 @@
+{
+  "id": "president__subordination__opu",
+  "from": "president",
+  "to": "opu",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Президент України -> Офіс Президента України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

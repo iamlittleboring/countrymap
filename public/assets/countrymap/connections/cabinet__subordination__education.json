@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__education",
+  "from": "cabinet",
+  "to": "education",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство освіти і науки України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

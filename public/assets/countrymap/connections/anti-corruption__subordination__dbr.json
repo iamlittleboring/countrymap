@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__dbr",
+  "from": "anti-corruption",
+  "to": "dbr",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> ДБР",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

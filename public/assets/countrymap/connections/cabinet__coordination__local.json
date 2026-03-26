@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__coordination__local",
+  "from": "cabinet",
+  "to": "local",
+  "type": "coordination",
+  "label": "Координація",
+  "title": "Кабінет Міністрів України -> Місцева влада",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

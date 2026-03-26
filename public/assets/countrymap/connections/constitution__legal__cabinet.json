@@ -1,0 +1,11 @@
+{
+  "id": "constitution__legal__cabinet",
+  "from": "constitution",
+  "to": "cabinet",
+  "type": "legal",
+  "label": "Правова основа",
+  "title": "Конституція України -> Кабінет Міністрів України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "mvs__coordination__communities",
+  "from": "mvs",
+  "to": "communities",
+  "type": "coordination",
+  "label": "Координація",
+  "title": "Міністерство внутрішніх справ України -> Громади",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

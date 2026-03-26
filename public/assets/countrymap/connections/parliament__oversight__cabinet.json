@@ -1,0 +1,11 @@
+{
+  "id": "parliament__oversight__cabinet",
+  "from": "parliament",
+  "to": "cabinet",
+  "type": "oversight",
+  "label": "Контроль / нагляд",
+  "title": "Верховна Рада України -> Кабінет Міністрів України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

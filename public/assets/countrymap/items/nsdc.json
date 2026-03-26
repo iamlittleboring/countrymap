@@ -1,0 +1,44 @@
+{
+  "id": "nsdc",
+  "title": "РНБО",
+  "type": "security",
+  "level": 3,
+  "description": "Координаційний орган при Президентові з питань національної безпеки і оборони.",
+  "details": {
+    "what": "Майданчик, де синхронізуються рішення з безпеки, санкцій та оборони.",
+    "reportsTo": [
+      "Президенту України"
+    ],
+    "manages": [],
+    "functions": [
+      "Готує рішення для Президента",
+      "Координує сектор безпеки",
+      "Аналізує ризики"
+    ],
+    "includes": [],
+    "interactions": [
+      "Взаємодіє із ЗСУ, СБУ, МВС, урядом"
+    ],
+    "regulations": [
+      "Закон про РНБО"
+    ],
+    "citizenQuestions": [
+      "Що означає рішення РНБО?"
+    ]
+  },
+  "children": [],
+  "connections": [
+    "president__coordination__nsdc"
+  ],
+  "resources": {
+    "site": "https://www.rnbo.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://www.rnbo.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 1170,
+    "y": 640
+  }
+}

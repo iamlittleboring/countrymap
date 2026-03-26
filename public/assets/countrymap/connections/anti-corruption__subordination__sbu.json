@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__sbu",
+  "from": "anti-corruption",
+  "to": "sbu",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> СБУ",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

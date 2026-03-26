@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__nazk",
+  "from": "anti-corruption",
+  "to": "nazk",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> НАЗК",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

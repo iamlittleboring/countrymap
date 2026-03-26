@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__sapo",
+  "from": "anti-corruption",
+  "to": "sapo",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> САП",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

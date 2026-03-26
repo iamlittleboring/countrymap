@@ -1,0 +1,11 @@
+{
+  "id": "min-def__coordination__general-staff",
+  "from": "min-def",
+  "to": "general-staff",
+  "type": "coordination",
+  "label": "Координація",
+  "title": "Міністерство оборони України -> Генеральний штаб",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

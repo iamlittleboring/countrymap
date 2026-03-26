@@ -1,0 +1,11 @@
+{
+  "id": "parliament__oversight__mvs",
+  "from": "parliament",
+  "to": "mvs",
+  "type": "oversight",
+  "label": "Контроль / нагляд",
+  "title": "Верховна Рада України -> Міністерство внутрішніх справ України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

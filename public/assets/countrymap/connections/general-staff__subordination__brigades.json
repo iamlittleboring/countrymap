@@ -1,0 +1,11 @@
+{
+  "id": "general-staff__subordination__brigades",
+  "from": "general-staff",
+  "to": "brigades",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Генеральний штаб -> Бригади",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

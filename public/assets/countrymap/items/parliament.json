@@ -1,0 +1,59 @@
+{
+  "id": "parliament",
+  "title": "Верховна Рада України",
+  "type": "legislative",
+  "level": 2,
+  "description": "Законодавчий орган, який ухвалює закони, затверджує бюджет і здійснює парламентський контроль.",
+  "details": {
+    "what": "Єдиний орган законодавчої влади України.",
+    "reportsTo": [
+      "Виборцям і Конституції"
+    ],
+    "manages": [
+      "Комітети",
+      "Законодавчий процес",
+      "Парламентський контроль"
+    ],
+    "functions": [
+      "Ухвалює закони",
+      "Затверджує бюджет",
+      "Контролює уряд"
+    ],
+    "includes": [
+      "Комітети",
+      "ТСК",
+      "Фракції"
+    ],
+    "interactions": [
+      "Працює з Президентом, урядом, контрольними органами"
+    ],
+    "regulations": [
+      "Конституція України",
+      "Регламент Верховної Ради"
+    ],
+    "citizenQuestions": [
+      "Як проходить закон?"
+    ]
+  },
+  "children": [
+    "committees"
+  ],
+  "connections": [
+    "country__subordination__parliament",
+    "parliament__oversight__cabinet",
+    "parliament__oversight__min-def",
+    "parliament__oversight__mvs",
+    "constitution__legal__parliament"
+  ],
+  "resources": {
+    "site": "https://www.rada.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://www.rada.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 1600,
+    "y": 320
+  }
+}

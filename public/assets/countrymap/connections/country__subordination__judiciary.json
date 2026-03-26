@@ -1,0 +1,11 @@
+{
+  "id": "country__subordination__judiciary",
+  "from": "country",
+  "to": "judiciary",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Держава Україна -> Судова система",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

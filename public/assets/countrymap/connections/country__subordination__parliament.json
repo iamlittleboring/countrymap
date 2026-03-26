@@ -1,0 +1,11 @@
+{
+  "id": "country__subordination__parliament",
+  "from": "country",
+  "to": "parliament",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Держава Україна -> Верховна Рада України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

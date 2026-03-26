@@ -1,0 +1,11 @@
+{
+  "id": "constitution__legal__parliament",
+  "from": "constitution",
+  "to": "parliament",
+  "type": "legal",
+  "label": "Правова основа",
+  "title": "Конституція України -> Верховна Рада України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

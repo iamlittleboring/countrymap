@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__unity",
+  "from": "cabinet",
+  "to": "unity",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство національної єдності України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

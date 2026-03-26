@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__bes",
+  "from": "anti-corruption",
+  "to": "bes",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> БЕБ",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "citizens__legal__rights",
+  "from": "citizens",
+  "to": "rights",
+  "type": "legal",
+  "label": "Правова основа",
+  "title": "Громадяни -> Права",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

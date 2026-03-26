@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__environment",
+  "from": "cabinet",
+  "to": "environment",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство захисту довкілля та природних ресурсів України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

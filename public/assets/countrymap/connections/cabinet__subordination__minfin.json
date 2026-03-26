@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__minfin",
+  "from": "cabinet",
+  "to": "minfin",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство фінансів України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

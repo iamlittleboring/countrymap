@@ -1,0 +1,11 @@
+{
+  "id": "country__service__citizens",
+  "from": "country",
+  "to": "citizens",
+  "type": "service",
+  "label": "Послуги / сервіс",
+  "title": "Держава Україна -> Громадяни",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

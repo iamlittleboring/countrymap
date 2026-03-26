@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__arma",
+  "from": "anti-corruption",
+  "to": "arma",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> АРМА",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

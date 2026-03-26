@@ -1,0 +1,11 @@
+{
+  "id": "taxes__funding__local",
+  "from": "taxes",
+  "to": "local",
+  "type": "funding",
+  "label": "Фінансування",
+  "title": "Податки -> Місцева влада",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "mvs__subordination__sbgs",
+  "from": "mvs",
+  "to": "sbgs",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Міністерство внутрішніх справ України -> Державна прикордонна служба України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

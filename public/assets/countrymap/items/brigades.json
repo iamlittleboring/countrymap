@@ -1,0 +1,54 @@
+{
+  "id": "brigades",
+  "title": "Бригади",
+  "type": "military",
+  "level": 4,
+  "description": "Базовий великий тактичний рівень, що керує батальйонами.",
+  "details": {
+    "what": "Велике з'єднання для виконання бойових завдань.",
+    "reportsTo": [
+      "Оперативному командуванню або корпусу"
+    ],
+    "manages": [
+      "Батальйони",
+      "Підрозділи забезпечення"
+    ],
+    "functions": [
+      "Виконує бойові задачі",
+      "Поєднує маневр, вогонь і логістику"
+    ],
+    "includes": [
+      "Батальйони",
+      "Артилерію",
+      "Розвідку",
+      "Логістику"
+    ],
+    "interactions": [
+      "Взаємодіє з суміжними бригадами, штабами та підтримкою"
+    ],
+    "regulations": [
+      "Бойові статути"
+    ],
+    "citizenQuestions": [
+      "Чим бригада відрізняється від батальйону?"
+    ]
+  },
+  "children": [
+    "battalions"
+  ],
+  "connections": [
+    "general-staff__subordination__brigades",
+    "brigades__subordination__battalions"
+  ],
+  "resources": {
+    "site": "https://www.zsu.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://www.zsu.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 710,
+    "y": 1320
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__culture",
+  "from": "cabinet",
+  "to": "culture",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство культури та стратегічних комунікацій України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

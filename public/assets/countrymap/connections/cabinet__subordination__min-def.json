@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__min-def",
+  "from": "cabinet",
+  "to": "min-def",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство оборони України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

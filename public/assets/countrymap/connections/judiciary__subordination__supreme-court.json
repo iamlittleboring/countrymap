@@ -1,0 +1,11 @@
+{
+  "id": "judiciary__subordination__supreme-court",
+  "from": "judiciary",
+  "to": "supreme-court",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Судова система -> Верховний Суд",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

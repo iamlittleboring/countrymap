@@ -1,0 +1,11 @@
+{
+  "id": "parliament__oversight__min-def",
+  "from": "parliament",
+  "to": "min-def",
+  "type": "oversight",
+  "label": "Контроль / нагляд",
+  "title": "Верховна Рада України -> Міністерство оборони України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

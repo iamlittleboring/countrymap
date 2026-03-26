@@ -1,0 +1,56 @@
+{
+  "id": "local",
+  "title": "Місцеве самоврядування",
+  "type": "local",
+  "level": 1,
+  "description": "Громади та регіони, що відповідають за управління на місцях.",
+  "details": {
+    "what": "Система управління на місцях, де вирішуються близькі до людини питання.",
+    "reportsTo": [
+      "Законам та виборцям на місцях"
+    ],
+    "manages": [
+      "Місцеві бюджети",
+      "Комунальні послуги",
+      "Локальні програми"
+    ],
+    "functions": [
+      "Організовує локальні послуги",
+      "Працює з інфраструктурою та громадськими потребами"
+    ],
+    "includes": [
+      "Громади",
+      "Ради",
+      "Комунальні структури"
+    ],
+    "interactions": [
+      "Взаємодіє з урядом і громадянами безпосередньо"
+    ],
+    "regulations": [
+      "Закон про місцеве самоврядування в Україні"
+    ],
+    "citizenQuestions": [
+      "Хто відповідає за дороги, благоустрій і місцеві сервіси?"
+    ]
+  },
+  "children": [
+    "communities"
+  ],
+  "connections": [
+    "country__subordination__local",
+    "taxes__funding__local",
+    "constitution__legal__local",
+    "cabinet__coordination__local"
+  ],
+  "resources": {
+    "site": "https://decentralization.ua/",
+    "socials": [],
+    "verify": [
+      "https://decentralization.ua/"
+    ]
+  },
+  "position": {
+    "x": 1420,
+    "y": 420
+  }
+}

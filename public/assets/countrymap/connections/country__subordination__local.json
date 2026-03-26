@@ -1,0 +1,11 @@
+{
+  "id": "country__subordination__local",
+  "from": "country",
+  "to": "local",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Держава Україна -> Місцева влада",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

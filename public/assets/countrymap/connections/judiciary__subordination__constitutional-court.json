@@ -1,0 +1,11 @@
+{
+  "id": "judiciary__subordination__constitutional-court",
+  "from": "judiciary",
+  "to": "constitutional-court",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Судова система -> Конституційний Суд України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

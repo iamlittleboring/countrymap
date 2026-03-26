@@ -1,0 +1,76 @@
+{
+  "id": "country",
+  "title": "Держава Україна",
+  "type": "state",
+  "level": 1,
+  "description": "Верхній рівень карти: конституційний лад, органи влади, безпековий блок, місцеве самоврядування та громадяни.",
+  "details": {
+    "what": "Цілісна система інституцій, через яку організовується управління країною.",
+    "reportsTo": [
+      "Конституції України та суверенітету народу"
+    ],
+    "manages": [
+      "Гілки влади",
+      "Сектор безпеки",
+      "Місцеве самоврядування",
+      "Публічні послуги"
+    ],
+    "functions": [
+      "Організовує управління",
+      "Забезпечує оборону",
+      "Гарантує правопорядок",
+      "Надає публічні сервіси"
+    ],
+    "includes": [
+      "Конституція",
+      "Президент",
+      "Верховна Рада",
+      "Кабінет Міністрів",
+      "Судова система",
+      "Антикорупційний і контрольний блок",
+      "Місцева влада",
+      "Громадяни"
+    ],
+    "interactions": [
+      "Працює через закони, урядові рішення, суди, служби та громади"
+    ],
+    "regulations": [
+      "Конституція України"
+    ],
+    "citizenQuestions": [
+      "Який орган за що відповідає?",
+      "Куди звертатися у конкретній ситуації?"
+    ]
+  },
+  "children": [
+    "constitution",
+    "president",
+    "parliament",
+    "cabinet",
+    "judiciary",
+    "anti-corruption",
+    "local",
+    "citizens"
+  ],
+  "connections": [
+    "constitution__legal__country",
+    "country__subordination__president",
+    "country__subordination__parliament",
+    "country__subordination__cabinet",
+    "country__subordination__judiciary",
+    "country__subordination__anti-corruption",
+    "country__subordination__local",
+    "country__service__citizens"
+  ],
+  "resources": {
+    "site": "https://www.kmu.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://www.kmu.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 2150,
+    "y": 80
+  }
+}

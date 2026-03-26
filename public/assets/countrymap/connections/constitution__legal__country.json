@@ -1,0 +1,11 @@
+{
+  "id": "constitution__legal__country",
+  "from": "constitution",
+  "to": "country",
+  "type": "legal",
+  "label": "Правова основа",
+  "title": "Конституція України -> Держава Україна",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

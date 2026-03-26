@@ -1,0 +1,11 @@
+{
+  "id": "president__coordination__nsdc",
+  "from": "president",
+  "to": "nsdc",
+  "type": "coordination",
+  "label": "Координація",
+  "title": "Президент України -> РНБО",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

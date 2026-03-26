@@ -1,0 +1,599 @@
+{
+  "rootId": "country",
+  "defaultActiveId": "cabinet",
+  "defaultExpandedIds": [
+    "country",
+    "president",
+    "parliament",
+    "cabinet",
+    "mvs",
+    "min-def",
+    "judiciary",
+    "anti-corruption"
+  ],
+  "levels": [
+    {
+      "id": "level-1",
+      "title": "Рівень 1",
+      "label": "Держава",
+      "description": "Базовий рівень: держава як система інституцій, права, управління та публічних сервісів."
+    },
+    {
+      "id": "level-2",
+      "title": "Рівень 2",
+      "label": "Ключові гілки та блоки",
+      "description": "Президент, парламент, уряд, судова система, антикорупційний та контрольний блок, місцеве самоврядування, громадяни."
+    },
+    {
+      "id": "level-3",
+      "title": "Рівень 3",
+      "label": "Конкретні інституції",
+      "description": "Міністерства, суди, офіси, ради, правоохоронні та контрольні органи."
+    },
+    {
+      "id": "level-4",
+      "title": "Рівень 4",
+      "label": "Підсистеми та служби",
+      "description": "Підпорядковані служби, агентства, оперативні та практичні елементи системи."
+    }
+  ],
+  "typeMeta": {
+    "state": {
+      "label": "Держава",
+      "icon": "🏛"
+    },
+    "executive": {
+      "label": "Виконавча влада",
+      "icon": "🏢"
+    },
+    "legislative": {
+      "label": "Законодавча влада",
+      "icon": "⚖"
+    },
+    "judiciary": {
+      "label": "Судова влада",
+      "icon": "⚖"
+    },
+    "ministry": {
+      "label": "Міністерство",
+      "icon": "🏢"
+    },
+    "military": {
+      "label": "Військова структура",
+      "icon": "🛡"
+    },
+    "security": {
+      "label": "Силовий / контрольний орган",
+      "icon": "🚨"
+    },
+    "local": {
+      "label": "Місцева влада",
+      "icon": "📍"
+    },
+    "society": {
+      "label": "Суспільство",
+      "icon": "👥"
+    },
+    "legal": {
+      "label": "Нормативна база",
+      "icon": "📘"
+    }
+  },
+  "relationMeta": {
+    "subordination": {
+      "label": "Підпорядкування",
+      "stroke": "#2563eb",
+      "dash": "0"
+    },
+    "coordination": {
+      "label": "Координація",
+      "stroke": "#f97316",
+      "dash": "10 7"
+    },
+    "oversight": {
+      "label": "Контроль / нагляд",
+      "stroke": "#7c3aed",
+      "dash": "5 8"
+    },
+    "service": {
+      "label": "Послуги / сервіс",
+      "stroke": "#059669",
+      "dash": "3 9"
+    },
+    "legal": {
+      "label": "Правова основа",
+      "stroke": "#475569",
+      "dash": "14 10"
+    },
+    "funding": {
+      "label": "Фінансування",
+      "stroke": "#b45309",
+      "dash": "12 6 2 6"
+    },
+    "reporting": {
+      "label": "Звітність",
+      "stroke": "#dc2626",
+      "dash": "2 6"
+    }
+  },
+  "world": {
+    "width": 4700,
+    "height": 3200
+  },
+  "items": [
+    {
+      "id": "country",
+      "file": "/assets/countrymap/items/country.json"
+    },
+    {
+      "id": "president",
+      "file": "/assets/countrymap/items/president.json"
+    },
+    {
+      "id": "opu",
+      "file": "/assets/countrymap/items/opu.json"
+    },
+    {
+      "id": "nsdc",
+      "file": "/assets/countrymap/items/nsdc.json"
+    },
+    {
+      "id": "parliament",
+      "file": "/assets/countrymap/items/parliament.json"
+    },
+    {
+      "id": "cabinet",
+      "file": "/assets/countrymap/items/cabinet.json"
+    },
+    {
+      "id": "judiciary",
+      "file": "/assets/countrymap/items/judiciary.json"
+    },
+    {
+      "id": "anti-corruption",
+      "file": "/assets/countrymap/items/anti-corruption.json"
+    },
+    {
+      "id": "min-def",
+      "file": "/assets/countrymap/items/min-def.json"
+    },
+    {
+      "id": "mvs",
+      "file": "/assets/countrymap/items/mvs.json"
+    },
+    {
+      "id": "mfa",
+      "file": "/assets/countrymap/items/mfa.json"
+    },
+    {
+      "id": "minfin",
+      "file": "/assets/countrymap/items/minfin.json"
+    },
+    {
+      "id": "minjust",
+      "file": "/assets/countrymap/items/minjust.json"
+    },
+    {
+      "id": "economy",
+      "file": "/assets/countrymap/items/economy.json"
+    },
+    {
+      "id": "education",
+      "file": "/assets/countrymap/items/education.json"
+    },
+    {
+      "id": "health",
+      "file": "/assets/countrymap/items/health.json"
+    },
+    {
+      "id": "social-policy",
+      "file": "/assets/countrymap/items/social-policy.json"
+    },
+    {
+      "id": "veterans",
+      "file": "/assets/countrymap/items/veterans.json"
+    },
+    {
+      "id": "energy",
+      "file": "/assets/countrymap/items/energy.json"
+    },
+    {
+      "id": "environment",
+      "file": "/assets/countrymap/items/environment.json"
+    },
+    {
+      "id": "agrarian",
+      "file": "/assets/countrymap/items/agrarian.json"
+    },
+    {
+      "id": "culture",
+      "file": "/assets/countrymap/items/culture.json"
+    },
+    {
+      "id": "youth-sport",
+      "file": "/assets/countrymap/items/youth-sport.json"
+    },
+    {
+      "id": "digital",
+      "file": "/assets/countrymap/items/digital.json"
+    },
+    {
+      "id": "communities-min",
+      "file": "/assets/countrymap/items/communities-min.json"
+    },
+    {
+      "id": "strategic-industries",
+      "file": "/assets/countrymap/items/strategic-industries.json"
+    },
+    {
+      "id": "unity",
+      "file": "/assets/countrymap/items/unity.json"
+    },
+    {
+      "id": "constitutional-court",
+      "file": "/assets/countrymap/items/constitutional-court.json"
+    },
+    {
+      "id": "supreme-court",
+      "file": "/assets/countrymap/items/supreme-court.json"
+    },
+    {
+      "id": "nabu",
+      "file": "/assets/countrymap/items/nabu.json"
+    },
+    {
+      "id": "sapo",
+      "file": "/assets/countrymap/items/sapo.json"
+    },
+    {
+      "id": "nazk",
+      "file": "/assets/countrymap/items/nazk.json"
+    },
+    {
+      "id": "arma",
+      "file": "/assets/countrymap/items/arma.json"
+    },
+    {
+      "id": "sasu",
+      "file": "/assets/countrymap/items/sasu.json"
+    },
+    {
+      "id": "dbr",
+      "file": "/assets/countrymap/items/dbr.json"
+    },
+    {
+      "id": "bes",
+      "file": "/assets/countrymap/items/bes.json"
+    },
+    {
+      "id": "sbu",
+      "file": "/assets/countrymap/items/sbu.json"
+    },
+    {
+      "id": "prosecutor",
+      "file": "/assets/countrymap/items/prosecutor.json"
+    },
+    {
+      "id": "police",
+      "file": "/assets/countrymap/items/police.json"
+    },
+    {
+      "id": "national-guard",
+      "file": "/assets/countrymap/items/national-guard.json"
+    },
+    {
+      "id": "dsns",
+      "file": "/assets/countrymap/items/dsns.json"
+    },
+    {
+      "id": "dms",
+      "file": "/assets/countrymap/items/dms.json"
+    },
+    {
+      "id": "sbgs",
+      "file": "/assets/countrymap/items/sbgs.json"
+    },
+    {
+      "id": "constitution",
+      "file": "/assets/countrymap/items/constitution.json"
+    },
+    {
+      "id": "committees",
+      "file": "/assets/countrymap/items/committees.json"
+    },
+    {
+      "id": "general-staff",
+      "file": "/assets/countrymap/items/general-staff.json"
+    },
+    {
+      "id": "brigades",
+      "file": "/assets/countrymap/items/brigades.json"
+    },
+    {
+      "id": "battalions",
+      "file": "/assets/countrymap/items/battalions.json"
+    },
+    {
+      "id": "local",
+      "file": "/assets/countrymap/items/local.json"
+    },
+    {
+      "id": "communities",
+      "file": "/assets/countrymap/items/communities.json"
+    },
+    {
+      "id": "citizens",
+      "file": "/assets/countrymap/items/citizens.json"
+    },
+    {
+      "id": "rights",
+      "file": "/assets/countrymap/items/rights.json"
+    },
+    {
+      "id": "taxes",
+      "file": "/assets/countrymap/items/taxes.json"
+    }
+  ],
+  "connections": [
+    {
+      "id": "constitution__legal__country",
+      "file": "/assets/countrymap/connections/constitution__legal__country.json"
+    },
+    {
+      "id": "constitution__legal__parliament",
+      "file": "/assets/countrymap/connections/constitution__legal__parliament.json"
+    },
+    {
+      "id": "constitution__legal__cabinet",
+      "file": "/assets/countrymap/connections/constitution__legal__cabinet.json"
+    },
+    {
+      "id": "constitution__legal__citizens",
+      "file": "/assets/countrymap/connections/constitution__legal__citizens.json"
+    },
+    {
+      "id": "constitution__legal__local",
+      "file": "/assets/countrymap/connections/constitution__legal__local.json"
+    },
+    {
+      "id": "country__subordination__president",
+      "file": "/assets/countrymap/connections/country__subordination__president.json"
+    },
+    {
+      "id": "country__subordination__parliament",
+      "file": "/assets/countrymap/connections/country__subordination__parliament.json"
+    },
+    {
+      "id": "country__subordination__cabinet",
+      "file": "/assets/countrymap/connections/country__subordination__cabinet.json"
+    },
+    {
+      "id": "country__subordination__judiciary",
+      "file": "/assets/countrymap/connections/country__subordination__judiciary.json"
+    },
+    {
+      "id": "country__subordination__anti-corruption",
+      "file": "/assets/countrymap/connections/country__subordination__anti-corruption.json"
+    },
+    {
+      "id": "country__subordination__local",
+      "file": "/assets/countrymap/connections/country__subordination__local.json"
+    },
+    {
+      "id": "country__service__citizens",
+      "file": "/assets/countrymap/connections/country__service__citizens.json"
+    },
+    {
+      "id": "president__subordination__opu",
+      "file": "/assets/countrymap/connections/president__subordination__opu.json"
+    },
+    {
+      "id": "president__coordination__nsdc",
+      "file": "/assets/countrymap/connections/president__coordination__nsdc.json"
+    },
+    {
+      "id": "parliament__oversight__cabinet",
+      "file": "/assets/countrymap/connections/parliament__oversight__cabinet.json"
+    },
+    {
+      "id": "parliament__oversight__min-def",
+      "file": "/assets/countrymap/connections/parliament__oversight__min-def.json"
+    },
+    {
+      "id": "parliament__oversight__mvs",
+      "file": "/assets/countrymap/connections/parliament__oversight__mvs.json"
+    },
+    {
+      "id": "cabinet__reporting__parliament",
+      "file": "/assets/countrymap/connections/cabinet__reporting__parliament.json"
+    },
+    {
+      "id": "cabinet__subordination__min-def",
+      "file": "/assets/countrymap/connections/cabinet__subordination__min-def.json"
+    },
+    {
+      "id": "cabinet__subordination__mvs",
+      "file": "/assets/countrymap/connections/cabinet__subordination__mvs.json"
+    },
+    {
+      "id": "cabinet__subordination__mfa",
+      "file": "/assets/countrymap/connections/cabinet__subordination__mfa.json"
+    },
+    {
+      "id": "cabinet__subordination__minfin",
+      "file": "/assets/countrymap/connections/cabinet__subordination__minfin.json"
+    },
+    {
+      "id": "cabinet__subordination__minjust",
+      "file": "/assets/countrymap/connections/cabinet__subordination__minjust.json"
+    },
+    {
+      "id": "cabinet__subordination__economy",
+      "file": "/assets/countrymap/connections/cabinet__subordination__economy.json"
+    },
+    {
+      "id": "cabinet__subordination__education",
+      "file": "/assets/countrymap/connections/cabinet__subordination__education.json"
+    },
+    {
+      "id": "cabinet__subordination__health",
+      "file": "/assets/countrymap/connections/cabinet__subordination__health.json"
+    },
+    {
+      "id": "cabinet__subordination__social-policy",
+      "file": "/assets/countrymap/connections/cabinet__subordination__social-policy.json"
+    },
+    {
+      "id": "cabinet__subordination__veterans",
+      "file": "/assets/countrymap/connections/cabinet__subordination__veterans.json"
+    },
+    {
+      "id": "cabinet__subordination__energy",
+      "file": "/assets/countrymap/connections/cabinet__subordination__energy.json"
+    },
+    {
+      "id": "cabinet__subordination__environment",
+      "file": "/assets/countrymap/connections/cabinet__subordination__environment.json"
+    },
+    {
+      "id": "cabinet__subordination__agrarian",
+      "file": "/assets/countrymap/connections/cabinet__subordination__agrarian.json"
+    },
+    {
+      "id": "cabinet__subordination__culture",
+      "file": "/assets/countrymap/connections/cabinet__subordination__culture.json"
+    },
+    {
+      "id": "cabinet__subordination__youth-sport",
+      "file": "/assets/countrymap/connections/cabinet__subordination__youth-sport.json"
+    },
+    {
+      "id": "cabinet__subordination__digital",
+      "file": "/assets/countrymap/connections/cabinet__subordination__digital.json"
+    },
+    {
+      "id": "cabinet__subordination__communities-min",
+      "file": "/assets/countrymap/connections/cabinet__subordination__communities-min.json"
+    },
+    {
+      "id": "cabinet__subordination__strategic-industries",
+      "file": "/assets/countrymap/connections/cabinet__subordination__strategic-industries.json"
+    },
+    {
+      "id": "cabinet__subordination__unity",
+      "file": "/assets/countrymap/connections/cabinet__subordination__unity.json"
+    },
+    {
+      "id": "cabinet__coordination__local",
+      "file": "/assets/countrymap/connections/cabinet__coordination__local.json"
+    },
+    {
+      "id": "min-def__coordination__general-staff",
+      "file": "/assets/countrymap/connections/min-def__coordination__general-staff.json"
+    },
+    {
+      "id": "general-staff__reporting__min-def",
+      "file": "/assets/countrymap/connections/general-staff__reporting__min-def.json"
+    },
+    {
+      "id": "general-staff__subordination__brigades",
+      "file": "/assets/countrymap/connections/general-staff__subordination__brigades.json"
+    },
+    {
+      "id": "brigades__subordination__battalions",
+      "file": "/assets/countrymap/connections/brigades__subordination__battalions.json"
+    },
+    {
+      "id": "mvs__subordination__police",
+      "file": "/assets/countrymap/connections/mvs__subordination__police.json"
+    },
+    {
+      "id": "mvs__subordination__national-guard",
+      "file": "/assets/countrymap/connections/mvs__subordination__national-guard.json"
+    },
+    {
+      "id": "mvs__subordination__dsns",
+      "file": "/assets/countrymap/connections/mvs__subordination__dsns.json"
+    },
+    {
+      "id": "mvs__subordination__dms",
+      "file": "/assets/countrymap/connections/mvs__subordination__dms.json"
+    },
+    {
+      "id": "mvs__subordination__sbgs",
+      "file": "/assets/countrymap/connections/mvs__subordination__sbgs.json"
+    },
+    {
+      "id": "mvs__coordination__communities",
+      "file": "/assets/countrymap/connections/mvs__coordination__communities.json"
+    },
+    {
+      "id": "judiciary__subordination__constitutional-court",
+      "file": "/assets/countrymap/connections/judiciary__subordination__constitutional-court.json"
+    },
+    {
+      "id": "judiciary__subordination__supreme-court",
+      "file": "/assets/countrymap/connections/judiciary__subordination__supreme-court.json"
+    },
+    {
+      "id": "anti-corruption__subordination__nabu",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__nabu.json"
+    },
+    {
+      "id": "anti-corruption__subordination__sapo",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__sapo.json"
+    },
+    {
+      "id": "anti-corruption__subordination__nazk",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__nazk.json"
+    },
+    {
+      "id": "anti-corruption__subordination__arma",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__arma.json"
+    },
+    {
+      "id": "anti-corruption__subordination__sasu",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__sasu.json"
+    },
+    {
+      "id": "anti-corruption__subordination__dbr",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__dbr.json"
+    },
+    {
+      "id": "anti-corruption__subordination__bes",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__bes.json"
+    },
+    {
+      "id": "anti-corruption__subordination__sbu",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__sbu.json"
+    },
+    {
+      "id": "anti-corruption__subordination__prosecutor",
+      "file": "/assets/countrymap/connections/anti-corruption__subordination__prosecutor.json"
+    },
+    {
+      "id": "police__service__citizens",
+      "file": "/assets/countrymap/connections/police__service__citizens.json"
+    },
+    {
+      "id": "communities__service__citizens",
+      "file": "/assets/countrymap/connections/communities__service__citizens.json"
+    },
+    {
+      "id": "citizens__legal__rights",
+      "file": "/assets/countrymap/connections/citizens__legal__rights.json"
+    },
+    {
+      "id": "citizens__subordination__taxes",
+      "file": "/assets/countrymap/connections/citizens__subordination__taxes.json"
+    },
+    {
+      "id": "taxes__funding__cabinet",
+      "file": "/assets/countrymap/connections/taxes__funding__cabinet.json"
+    },
+    {
+      "id": "taxes__funding__local",
+      "file": "/assets/countrymap/connections/taxes__funding__local.json"
+    }
+  ]
+}

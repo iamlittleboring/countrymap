@@ -1,0 +1,11 @@
+{
+  "id": "citizens__subordination__taxes",
+  "from": "citizens",
+  "to": "taxes",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Громадяни -> Податки",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

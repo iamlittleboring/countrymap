@@ -1,0 +1,11 @@
+{
+  "id": "country__subordination__anti-corruption",
+  "from": "country",
+  "to": "anti-corruption",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Держава Україна -> Антикорупційний та контрольний блок",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

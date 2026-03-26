@@ -1,0 +1,42 @@
+{
+  "id": "opu",
+  "title": "Офіс Президента України",
+  "type": "executive",
+  "level": 3,
+  "description": "Адміністративний та аналітичний апарат, який забезпечує діяльність Президента.",
+  "details": {
+    "what": "Структура, що готує матеріали, комунікації, координацію зустрічей і супровід рішень Президента.",
+    "reportsTo": [
+      "Президенту України"
+    ],
+    "manages": [],
+    "functions": [
+      "Організаційне забезпечення",
+      "Аналітичний супровід",
+      "Комунікації"
+    ],
+    "includes": [],
+    "interactions": [],
+    "regulations": [
+      "Положення про Офіс Президента"
+    ],
+    "citizenQuestions": [
+      "Куди звертатися з петицією чи зверненням до Президента?"
+    ]
+  },
+  "children": [],
+  "connections": [
+    "president__subordination__opu"
+  ],
+  "resources": {
+    "site": "https://www.president.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://www.president.gov.ua/office"
+    ]
+  },
+  "position": {
+    "x": 860,
+    "y": 640
+  }
+}

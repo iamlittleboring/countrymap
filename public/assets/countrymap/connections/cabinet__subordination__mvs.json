@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__mvs",
+  "from": "cabinet",
+  "to": "mvs",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство внутрішніх справ України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

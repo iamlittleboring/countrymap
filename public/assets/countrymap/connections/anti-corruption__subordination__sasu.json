@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__sasu",
+  "from": "anti-corruption",
+  "to": "sasu",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> Державна аудиторська служба України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

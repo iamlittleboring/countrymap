@@ -1,0 +1,11 @@
+{
+  "id": "mvs__subordination__dms",
+  "from": "mvs",
+  "to": "dms",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Міністерство внутрішніх справ України -> ДМС",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

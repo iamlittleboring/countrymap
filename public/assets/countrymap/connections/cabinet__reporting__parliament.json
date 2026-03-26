@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__reporting__parliament",
+  "from": "cabinet",
+  "to": "parliament",
+  "type": "reporting",
+  "label": "Звітність",
+  "title": "Кабінет Міністрів України -> Верховна Рада України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__social-policy",
+  "from": "cabinet",
+  "to": "social-policy",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство соціальної політики України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

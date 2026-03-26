@@ -1,0 +1,57 @@
+{
+  "id": "judiciary",
+  "title": "Судова система",
+  "type": "judiciary",
+  "level": 2,
+  "description": "Гілка влади, яка здійснює правосуддя та конституційний контроль через суди.",
+  "details": {
+    "what": "Система судів загальної юрисдикції та окремий блок конституційної юрисдикції.",
+    "reportsTo": [
+      "Конституції України та принципу незалежності суду"
+    ],
+    "manages": [
+      "Правосуддя",
+      "Судову практику"
+    ],
+    "functions": [
+      "Розглядає спори",
+      "Захищає права",
+      "Застосовує норми права"
+    ],
+    "includes": [
+      "Конституційний Суд",
+      "Верховний Суд",
+      "Суди нижчих інстанцій"
+    ],
+    "interactions": [
+      "Взаємодіє з адвокатурою, прокуратурою та громадянами"
+    ],
+    "regulations": [
+      "Конституція України",
+      "Закон про судоустрій і статус суддів"
+    ],
+    "citizenQuestions": [
+      "Чим відрізняється Конституційний Суд від Верховного Суду?"
+    ]
+  },
+  "children": [
+    "constitutional-court",
+    "supreme-court"
+  ],
+  "connections": [
+    "country__subordination__judiciary",
+    "judiciary__subordination__constitutional-court",
+    "judiciary__subordination__supreme-court"
+  ],
+  "resources": {
+    "site": "https://court.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://court.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 3410,
+    "y": 320
+  }
+}

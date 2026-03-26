@@ -1,0 +1,11 @@
+{
+  "id": "general-staff__reporting__min-def",
+  "from": "general-staff",
+  "to": "min-def",
+  "type": "reporting",
+  "label": "Звітність",
+  "title": "Генеральний штаб -> Міністерство оборони України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

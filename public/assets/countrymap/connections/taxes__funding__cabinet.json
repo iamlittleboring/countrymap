@@ -1,0 +1,11 @@
+{
+  "id": "taxes__funding__cabinet",
+  "from": "taxes",
+  "to": "cabinet",
+  "type": "funding",
+  "label": "Фінансування",
+  "title": "Податки -> Кабінет Міністрів України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__communities-min",
+  "from": "cabinet",
+  "to": "communities-min",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство розвитку громад та територій України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

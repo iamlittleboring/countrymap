@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__strategic-industries",
+  "from": "cabinet",
+  "to": "strategic-industries",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство з питань стратегічних галузей промисловості України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

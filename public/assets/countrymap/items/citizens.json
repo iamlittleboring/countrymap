@@ -1,0 +1,65 @@
+{
+  "id": "citizens",
+  "title": "Громадянин",
+  "type": "society",
+  "level": 1,
+  "description": "Людина в системі держави: виборець, платник податків, користувач послуг і носій прав.",
+  "details": {
+    "what": "Центральний учасник системи, від якого походить легітимність влади і до якого повертаються її функції.",
+    "reportsTo": [
+      "Законам держави"
+    ],
+    "manages": [
+      "Свій вибір, звернення, участь у суспільному житті"
+    ],
+    "functions": [
+      "Голосує",
+      "Платить податки",
+      "Отримує послуги",
+      "Може бути мобілізований"
+    ],
+    "includes": [
+      "Права",
+      "Обов'язки",
+      "Податки",
+      "Звернення до органів"
+    ],
+    "interactions": [
+      "Звертається до поліції",
+      "Отримує послуги",
+      "Підпорядковується законам",
+      "Може оскаржувати рішення органів"
+    ],
+    "regulations": [
+      "Конституція України",
+      "Галузеві закони"
+    ],
+    "citizenQuestions": [
+      "Куди звертатися у конкретній життєвій ситуації?",
+      "Які права й обов'язки я маю?"
+    ]
+  },
+  "children": [
+    "rights",
+    "taxes"
+  ],
+  "connections": [
+    "country__service__citizens",
+    "police__service__citizens",
+    "communities__service__citizens",
+    "citizens__legal__rights",
+    "citizens__subordination__taxes",
+    "constitution__legal__citizens"
+  ],
+  "resources": {
+    "site": "https://diia.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://diia.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 1760,
+    "y": 420
+  }
+}

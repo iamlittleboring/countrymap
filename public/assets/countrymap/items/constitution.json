@@ -1,0 +1,53 @@
+{
+  "id": "constitution",
+  "title": "Конституція",
+  "type": "legal",
+  "level": 1,
+  "description": "Правова основа, на якій тримається вся система державних органів.",
+  "details": {
+    "what": "Основний закон держави.",
+    "reportsTo": [
+      "Суверенітету народу"
+    ],
+    "manages": [
+      "Рамку повноважень органів влади"
+    ],
+    "functions": [
+      "Визначає систему влади",
+      "Закладає права людини"
+    ],
+    "includes": [
+      "Основи державного ладу",
+      "Права людини",
+      "Повноваження інституцій"
+    ],
+    "interactions": [
+      "Є правовою базою для всіх ключових інституцій"
+    ],
+    "regulations": [
+      "Конституція України"
+    ],
+    "citizenQuestions": [
+      "На чому тримається вся система держави?"
+    ]
+  },
+  "children": [],
+  "connections": [
+    "constitution__legal__country",
+    "constitution__legal__parliament",
+    "constitution__legal__cabinet",
+    "constitution__legal__citizens",
+    "constitution__legal__local"
+  ],
+  "resources": {
+    "site": "https://zakon.rada.gov.ua/laws/show/254%D0%BA/96-%D0%B2%D1%80",
+    "socials": [],
+    "verify": [
+      "https://zakon.rada.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 350,
+    "y": 120
+  }
+}

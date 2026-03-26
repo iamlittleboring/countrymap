@@ -1,0 +1,11 @@
+{
+  "id": "country__subordination__president",
+  "from": "country",
+  "to": "president",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Держава Україна -> Президент України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

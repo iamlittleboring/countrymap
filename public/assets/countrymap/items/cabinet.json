@@ -1,0 +1,70 @@
+{
+  "id": "cabinet",
+  "title": "Кабінет Міністрів України",
+  "type": "executive",
+  "level": 2,
+  "description": "Вищий орган у системі виконавчої влади, який координує міністерства та реалізує державну політику.",
+  "details": {
+    "what": "Політичний і адміністративний центр виконавчої влади.",
+    "reportsTo": [
+      "Парламентському контролю та законам"
+    ],
+    "manages": [
+      "Міністерства",
+      "Державні програми",
+      "Виконання законів"
+    ],
+    "functions": [
+      "Реалізує державну політику",
+      "Координує міністерства",
+      "Видає постанови та розпорядження"
+    ],
+    "includes": [
+      "Усі профільні міністерства",
+      "Частину ЦОВВ"
+    ],
+    "interactions": [
+      "Працює з парламентом, Президентом, громадами"
+    ],
+    "regulations": [
+      "Конституція України",
+      "Закон про Кабінет Міністрів України"
+    ],
+    "citizenQuestions": [
+      "Чим Кабмін відрізняється від міністерства?"
+    ]
+  },
+  "children": [
+    "min-def",
+    "mvs",
+    "mfa",
+    "minfin",
+    "minjust",
+    "economy",
+    "education",
+    "health",
+    "social-policy",
+    "veterans",
+    "energy",
+    "environment",
+    "agrarian",
+    "culture",
+    "youth-sport",
+    "digital",
+    "communities-min",
+    "strategic-industries",
+    "unity"
+  ],
+  "connections": [],
+  "resources": {
+    "site": "https://www.kmu.gov.ua/",
+    "socials": [],
+    "verify": [
+      "https://www.kmu.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 2550,
+    "y": 320
+  }
+}

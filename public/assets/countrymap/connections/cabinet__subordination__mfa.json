@@ -1,0 +1,11 @@
+{
+  "id": "cabinet__subordination__mfa",
+  "from": "cabinet",
+  "to": "mfa",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Кабінет Міністрів України -> Міністерство закордонних справ України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

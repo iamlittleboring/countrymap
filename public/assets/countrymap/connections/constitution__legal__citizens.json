@@ -1,0 +1,11 @@
+{
+  "id": "constitution__legal__citizens",
+  "from": "constitution",
+  "to": "citizens",
+  "type": "legal",
+  "label": "Правова основа",
+  "title": "Конституція України -> Громадяни",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

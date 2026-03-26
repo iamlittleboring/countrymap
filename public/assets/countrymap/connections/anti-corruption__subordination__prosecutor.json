@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__prosecutor",
+  "from": "anti-corruption",
+  "to": "prosecutor",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> Офіс Генерального прокурора",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

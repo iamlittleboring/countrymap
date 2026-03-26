@@ -1,0 +1,11 @@
+{
+  "id": "mvs__subordination__dsns",
+  "from": "mvs",
+  "to": "dsns",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Міністерство внутрішніх справ України -> ДСНС",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

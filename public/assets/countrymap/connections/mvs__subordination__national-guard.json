@@ -1,0 +1,11 @@
+{
+  "id": "mvs__subordination__national-guard",
+  "from": "mvs",
+  "to": "national-guard",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Міністерство внутрішніх справ України -> Національна гвардія України",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

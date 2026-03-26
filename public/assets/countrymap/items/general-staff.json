@@ -1,0 +1,74 @@
+{
+  "id": "general-staff",
+  "title": "Генеральний штаб",
+  "type": "military",
+  "level": 3,
+  "description": "Планує застосування сил і координує управління військами.",
+  "details": {
+    "what": "Орган військового управління стратегічного рівня.",
+    "reportsTo": [
+      "Військово-політичному керівництву",
+      "Статутам і законам"
+    ],
+    "manages": [
+      "Оперативне планування",
+      "Командування",
+      "Військову вертикаль"
+    ],
+    "functions": [
+      "Планує застосування військ",
+      "Організовує управління",
+      "Формує накази"
+    ],
+    "includes": [
+      "Бригади",
+      "Оперативні командування",
+      "Штабні структури"
+    ],
+    "interactions": [
+      "Координується з Міноборони",
+      "Працює з іншими складовими сектору безпеки"
+    ],
+    "regulations": [
+      "Закони про ЗСУ та оборону",
+      "Статути ЗСУ"
+    ],
+    "citizenQuestions": [
+      "Хто планує застосування військ?",
+      "Що між Генштабом і бригадою?"
+    ]
+  },
+  "children": [
+    "brigades"
+  ],
+  "connections": [
+    "min-def__coordination__general-staff",
+    "general-staff__reporting__min-def",
+    "general-staff__subordination__brigades"
+  ],
+  "resources": {
+    "site": "https://mod.gov.ua/pro-nas/generalnij-shtab-zbrojnih-sil-ukrayini",
+    "socials": [
+      {
+        "label": "Facebook",
+        "url": "https://www.facebook.com/GeneralStaff.ua/"
+      },
+      {
+        "label": "Telegram",
+        "url": "https://t.me/GeneralStaffZSU"
+      },
+      {
+        "label": "YouTube",
+        "url": "https://www.youtube.com/@GeneralStaffUA"
+      }
+    ],
+    "verify": [
+      "https://mod.gov.ua/pro-nas/generalnij-shtab-zbrojnih-sil-ukrayini",
+      "https://www.zsu.gov.ua/"
+    ]
+  },
+  "position": {
+    "x": 820,
+    "y": 1060
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "anti-corruption__subordination__nabu",
+  "from": "anti-corruption",
+  "to": "nabu",
+  "type": "subordination",
+  "label": "Підпорядкування",
+  "title": "Антикорупційний та контрольний блок -> НАБУ",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

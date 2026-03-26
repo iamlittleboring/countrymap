@@ -1,0 +1,11 @@
+{
+  "id": "police__service__citizens",
+  "from": "police",
+  "to": "citizens",
+  "type": "service",
+  "label": "Послуги / сервіс",
+  "title": "Національна поліція України -> Громадяни",
+  "text": "",
+  "actions": [],
+  "checks": []
+}

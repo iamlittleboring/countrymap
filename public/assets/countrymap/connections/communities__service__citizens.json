@@ -1,0 +1,11 @@
+{
+  "id": "communities__service__citizens",
+  "from": "communities",
+  "to": "citizens",
+  "type": "service",
+  "label": "Послуги / сервіс",
+  "title": "Громади -> Громадяни",
+  "text": "",
+  "actions": [],
+  "checks": []
+}
