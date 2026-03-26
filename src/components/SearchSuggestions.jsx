@@ -1,6 +1,4 @@
-import { memo } from "react";
-
-function SearchSuggestions({ query, suggestions, activeId, typeMeta, onPick }) {
+export default function SearchSuggestions({ query, suggestions, activeId, typeMeta, onPick }) {
   if (!query.trim()) return null;
 
   return (
@@ -39,5 +37,3 @@ function SearchSuggestions({ query, suggestions, activeId, typeMeta, onPick }) {
     </div>
   );
 }
-
-export default memo(SearchSuggestions);

@@ -1,6 +1,4 @@
-import { memo } from "react";
-
-function DetailSection({ title, items }) {
+export default function DetailSection({ title, items }) {
   return (
     <section className="details-section">
       <h3>{title}</h3>
@@ -10,9 +8,9 @@ function DetailSection({ title, items }) {
             <li key={item}>{item}</li>
           ))}
         </ul>
-      ) : <div className="empty-state">У цьому блоці поки немає даних.</div>}
+      ) : (
+        <div className="empty-state">У цьому блоці поки немає даних.</div>
+      )}
     </section>
   );
 }
-
-export default memo(DetailSection);

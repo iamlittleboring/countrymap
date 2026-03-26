@@ -51,6 +51,9 @@ a:focus-visible {
 }
 
 .app-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   position: relative;
   max-width: 1520px;
   margin: 0 auto;
@@ -65,25 +68,24 @@ a:focus-visible {
 .mindmap-overview-grid,
 .mindmap-screen-grid {
   display: grid;
-  gap: 20px;
+  gap: inherit;
 }
 
 .app-topbar {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .layout-with-sidebar {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(360px, 420px);
-  gap: 20px;
+  gap: inherit;
   align-items: start;
 }
 
 .layout-main {
   display: grid;
-  gap: 20px;
+  gap: inherit;
 }
 
 .hierarchy-page {
@@ -91,15 +93,10 @@ a:focus-visible {
   gap: 32px;
 }
 
-.mindmap-page {
+.mindmap-sidebar-stack {
   display: grid;
   gap: 20px;
-}
-
-.mindmap-details-wrap {
-  max-width: 980px;
-  display: grid;
-  gap: 20px;
+  align-content: start;
 }
 
 .hero-grid {
@@ -295,7 +292,9 @@ a:focus-visible {
 .level-card {
   display: grid;
   gap: 6px;
+  align-content: start;
   padding: 16px;
+  min-height: 140px;
   border-radius: 22px;
   background: rgba(255, 251, 244, 0.84);
   border: 1px solid rgba(80, 67, 44, 0.12);
@@ -587,6 +586,7 @@ a:focus-visible {
 }
 
 .legend-item {
+  --legend-color: currentColor;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -602,19 +602,31 @@ a:focus-visible {
   border-top: 3px solid var(--legend-color);
 }
 
-.mindmap-main-panel {
+.panel-mindmap {
   overflow: hidden;
+  contain: none;
 }
 
 .mindmap-canvas-panel {
-  display: grid;
-  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.mindmap-canvas-panel:fullscreen,
+.mindmap-canvas-panel:-webkit-full-screen,
+.mindmap-canvas-panel-fullscreen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top, rgba(255, 252, 246, 0.98), rgba(239, 231, 216, 0.94));
 }
 
 .mindmap-viewport {
   position: relative;
-  min-height: 60vh;
-  max-height: 60vh;
+  height: 60vh;
   overflow: hidden;
   overscroll-behavior: contain;
   border-radius: 28px;
@@ -627,6 +639,37 @@ a:focus-visible {
   cursor: grab;
   user-select: none;
   touch-action: none;
+}
+
+.mindmap-viewport-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+}
+
+.mindmap-canvas-header {
+  position: relative;
+  z-index: 1;
+}
+
+.mindmap-canvas-header-fullscreen {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 2;
+  padding: 16px 18px;
+  border-radius: 24px;
+  background: rgba(255, 252, 246, 0.88);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 40px rgba(80, 67, 44, 0.12);
 }
 
 .mindmap-viewport:active {
@@ -673,7 +716,7 @@ a:focus-visible {
 
 .mindmap-stage {
   display: grid;
-  gap: 20px;
+  gap: inherit;
   padding: 8px 0 0;
 }
 
@@ -849,17 +892,13 @@ a:focus-visible {
   color: #5f5748;
 }
 
-.relation-detail-wrap {
-  display: grid;
-}
-
-.relation-detail-panel {
-  display: grid;
-  gap: 18px;
+.mindmap-relations {
+  margin-top: 18px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(80, 67, 44, 0.12);
 }
 
 .relation-detail-grid {
-  display: grid;
   gap: 18px;
 }
 
@@ -1018,7 +1057,7 @@ a:focus-visible {
 
 @media (max-width: 960px) {
   .mindmap-viewport {
-    min-height: 50vh;
+    height: 50vh;
   }
 
   .mindmap-stage-middle,

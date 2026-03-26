@@ -14,7 +14,8 @@ export default function SearchPanel({
   statusMessage,
   extra,
 }) {
-  const hasQuery = query.trim().length > 0;
+  const hasQuery = Boolean(query.trim());
+  const noteId = note ? `${searchId}-note` : undefined;
 
   return (
     <article className="panel panel-search">
@@ -25,9 +26,9 @@ export default function SearchPanel({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={placeholder}
-            aria-expanded={hasQuery ? "true" : "false"}
+            aria-expanded={hasQuery}
             aria-controls={searchControlsId}
-            aria-describedby={note ? `${searchId}-note` : undefined}
+            aria-describedby={noteId}
           />
         </label>
 
@@ -41,11 +42,7 @@ export default function SearchPanel({
           />
         </div>
 
-        {note && (
-          <p className="screen-note" id={`${searchId}-note`}>
-            {note}
-          </p>
-        )}
+        {note && <p className="screen-note" id={noteId}>{note}</p>}
 
         {statusMessage && <p className="screen-note">{statusMessage}</p>}
 

@@ -1,21 +1,23 @@
-import React, { memo } from "react";
+import { Fragment } from "react";
 import DetailSection from "./DetailSection";
+import { DETAIL_SECTION_FIELDS } from "../lib/nodeDetails";
 import { getChildren } from "../lib/mapUtils";
 
-function NodeDetailsPanel({ activeNode, breadcrumb, typeMeta, onSelect }) {
+export default function NodeDetailsPanel({ activeNode, breadcrumb, typeMeta, onSelect }) {
   const meta = typeMeta[activeNode.type] || { label: activeNode.type };
   const details = activeNode.details || {};
+  const children = getChildren(activeNode);
 
   return (
     <aside className="panel panel-details">
       <nav className="breadcrumb" aria-label="Навігаційний ланцюжок">
         {breadcrumb.map((item, index) => (
-          <React.Fragment key={item.title}>
+          <Fragment key={item.title}>
             <button type="button" className="breadcrumb-link" onClick={() => onSelect(item.id)}>
               {item.title}
             </button>
             {index < breadcrumb.length - 1 && <span>/</span>}
-          </React.Fragment>
+          </Fragment>
         ))}
       </nav>
 
@@ -35,19 +37,15 @@ function NodeDetailsPanel({ activeNode, breadcrumb, typeMeta, onSelect }) {
         <p>{details.what || activeNode.description}</p>
       </section>
 
-      <DetailSection title="Кому підпорядковується" items={details.reportsTo} />
-      <DetailSection title="Ким керує" items={details.manages} />
-      <DetailSection title="Основні функції" items={details.functions} />
-      <DetailSection title="Які органи входять" items={details.includes} />
-      <DetailSection title="Як взаємодіє з іншими структурами" items={details.interactions} />
-      <DetailSection title="Які документи регулюють роботу" items={details.regulations} />
-      <DetailSection title="Типові питання громадянина" items={details.citizenQuestions} />
+      {DETAIL_SECTION_FIELDS.map(([title, field]) => (
+        <DetailSection key={field} title={title} items={details[field]} />
+      ))}
 
       <section className="details-section">
         <h3>Прямі нижчі вузли</h3>
-        {getChildren(activeNode).length ? (
+        {children.length ? (
           <div className="child-grid">
-            {getChildren(activeNode).map((child) => (
+            {children.map((child) => (
               <button
                 key={child.id}
                 type="button"
@@ -66,5 +64,3 @@ function NodeDetailsPanel({ activeNode, breadcrumb, typeMeta, onSelect }) {
     </aside>
   );
 }
-
-export default memo(NodeDetailsPanel);

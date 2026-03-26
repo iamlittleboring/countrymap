@@ -1,32 +1,18 @@
-import { useMemo } from "react";
+import OverviewTile from "./OverviewTile";
+import { getHierarchyLevels } from "../lib/overviewUtils";
 
 export default function HierarchyOverviewTiles({ allNodes }) {
-  const levels = useMemo(
-    () =>
-      Array.from(
-        new Map(
-          allNodes.map((node) => [
-            node.level || 1,
-            {
-              id: `level-${node.level || 1}`,
-              title: `Рівень ${node.level || 1}`,
-              label: `${allNodes.filter((candidate) => (candidate.level || 1) === (node.level || 1)).length} вузлів`,
-              description: "Ключові об'єкти цього рівня у загальній структурі.",
-            },
-          ]),
-        ).values(),
-      ).sort((left, right) => left.id.localeCompare(right.id)),
-    [allNodes],
-  );
+  const levels = getHierarchyLevels(allNodes);
 
   return (
     <section className="roadmap-grid">
       {levels.map((level) => (
-        <article key={level.id} className="level-card">
-          <p>{level.title}</p>
-          <strong>{level.label}</strong>
-          <span>{level.description}</span>
-        </article>
+        <OverviewTile
+          key={level.id}
+          title={level.title}
+          subtitle={level.subtitle}
+          text={level.text}
+        />
       ))}
     </section>
   );

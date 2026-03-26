@@ -9,6 +9,15 @@ function normalizeItem(item) {
   };
 }
 
+async function loadJson(file, errorPrefix) {
+  const response = await fetch(file);
+  if (!response.ok) {
+    throw new Error(`${errorPrefix}: ${file}`);
+  }
+
+  return response.json();
+}
+
 function buildNodeTree(id, itemsById, path = []) {
   const item = itemsById[id];
   if (!item) return null;
@@ -42,32 +51,11 @@ export function hydrateCountryMapData(indexData, items, connections) {
 }
 
 export async function loadCountryMapData() {
-  const indexResponse = await fetch("/assets/countrymap/index.json");
-  if (!indexResponse.ok) {
-    throw new Error(`Failed to load map index: ${indexResponse.status}`);
-  }
-
-  const indexData = await indexResponse.json();
+  const indexData = await loadJson("/assets/countrymap/index.json", "Failed to load map index");
 
   const [items, connections] = await Promise.all([
-    Promise.all(
-      (indexData.items || []).map(async ({ file }) => {
-        const response = await fetch(file);
-        if (!response.ok) {
-          throw new Error(`Failed to load item asset: ${file}`);
-        }
-        return response.json();
-      }),
-    ),
-    Promise.all(
-      (indexData.connections || []).map(async ({ file }) => {
-        const response = await fetch(file);
-        if (!response.ok) {
-          throw new Error(`Failed to load connection asset: ${file}`);
-        }
-        return response.json();
-      }),
-    ),
+    Promise.all((indexData.items || []).map(({ file }) => loadJson(file, "Failed to load item asset"))),
+    Promise.all((indexData.connections || []).map(({ file }) => loadJson(file, "Failed to load connection asset"))),
   ]);
 
   return hydrateCountryMapData(indexData, items, connections);

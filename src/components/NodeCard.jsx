@@ -1,6 +1,4 @@
-import { memo } from "react";
-
-function NodeCard({
+export default function NodeCard({
   node,
   activeId,
   onSelect,
@@ -38,5 +36,3 @@ function NodeCard({
     </button>
   );
 }
-
-export default memo(NodeCard);

@@ -1,11 +1,12 @@
-import { startTransition, useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./styles/app.css";
 import AppHeader from "./components/AppHeader";
+import LoadingState from "./components/app/LoadingState";
+import MindMapHelpPanel from "./components/app/MindMapHelpPanel";
 import HeroSearchPanel from "./components/HeroSearchPanel";
 import HierarchyOverviewTiles from "./components/HierarchyOverviewTiles";
 import MindMapOverviewTiles from "./components/MindMapOverviewTiles";
 import NodeDetailsPanel from "./components/NodeDetailsPanel";
-import RelationLegend from "./components/RelationLegend";
 import RoutePageLayout from "./components/RoutePageLayout";
 import { loadCountryMapData } from "./data/mapData";
 import {
@@ -18,61 +19,32 @@ import {
 import HierarchyScreen from "./screens/HierarchyScreen";
 import MindMapScreen from "./screens/MindMapScreen";
 
-function MindMapHelpPanel() {
-  return (
-    <article className="panel">
-      <header className="panel-header panel-header-compact">
-        <div>
-          <p className="eyebrow">Пояснення</p>
-          <h2>Як читати стрілочки</h2>
-        </div>
-      </header>
-      <div className="mindmap-help">
-        <p>Стрілка показує напрямок взаємодії між двома вузлами.</p>
-        <p>Колір і стиль лінії підказують тип зв&apos;язку: підпорядкування, координація, нагляд, сервіс або правова основа.</p>
-        <p>Натисніть на стрілку, щоб побачити її пояснення та джерела для перевірки.</p>
-      </div>
-    </article>
-  );
-}
-
-function LoadingState({ title, description }) {
-  return (
-    <section className="panel loading-panel">
-      <p className="eyebrow">Проєкт</p>
-      <h1>{title}</h1>
-      <p className="hero-text">{description}</p>
-    </section>
-  );
-}
+const EMPTY_SET = new Set();
+const EMPTY_OBJECT = {};
+const EMPTY_ARRAY = [];
 
 export default function App() {
   const [data, setData] = useState(null);
-  const [loadingState, setLoadingState] = useState({ loading: true, error: "" });
+  const [error, setError] = useState("");
   const [screen, setScreen] = useState("list");
   const [query, setQuery] = useState("");
   const [activeId, setActiveId] = useState("");
   const [expanded, setExpanded] = useState(new Set());
-  const deferredQuery = useDeferredValue(query);
 
   useEffect(() => {
     let cancelled = false;
 
     async function loadData() {
       try {
-        setLoadingState({ loading: true, error: "" });
         const nextData = await loadCountryMapData();
         if (cancelled) return;
         setData(nextData);
         setActiveId(nextData.defaultActiveId);
         setExpanded(new Set(nextData.defaultExpandedIds));
-        setLoadingState({ loading: false, error: "" });
+        setError("");
       } catch (error) {
         if (cancelled) return;
-        setLoadingState({
-          loading: false,
-          error: error instanceof Error ? error.message : "Failed to load data",
-        });
+        setError(error instanceof Error ? error.message : "Failed to load data");
       }
     }
 
@@ -84,35 +56,26 @@ export default function App() {
   }, []);
 
   const hierarchyData = data?.hierarchyData;
-  const relationMeta = data?.relationMeta || {};
-  const relations = data?.relations || [];
-  const typeMeta = data?.typeMeta || {};
+  const relationMeta = data?.relationMeta || EMPTY_OBJECT;
+  const relations = data?.relations || EMPTY_ARRAY;
+  const typeMeta = data?.typeMeta || EMPTY_OBJECT;
   const world = data?.world;
 
-  const allNodes = useMemo(() => (hierarchyData ? flattenTree(hierarchyData) : []), [hierarchyData]);
-  const nodesById = useMemo(
-    () => Object.fromEntries(allNodes.map((node) => [node.id, node])),
-    [allNodes],
-  );
-  const mindMapNodes = useMemo(() => allNodes.filter((node) => node.position), [allNodes]);
+  const allNodes = useMemo(() => (hierarchyData ? flattenTree(hierarchyData) : EMPTY_ARRAY), [hierarchyData]);
+  const nodesById = useMemo(() => Object.fromEntries(allNodes.map((node) => [node.id, node])), [allNodes]);
+  const mindMapNodes = allNodes.filter((node) => node.position);
+  const normalizedQuery = query.trim().toLowerCase();
 
   const matches = useMemo(() => {
-    if (!deferredQuery.trim()) return new Set();
-    const normalizedQuery = deferredQuery.toLowerCase();
-    return new Set(
-      allNodes
-        .filter((node) => getNodeSearchText(node).includes(normalizedQuery))
-        .map((node) => node.id),
-    );
-  }, [allNodes, deferredQuery]);
+    if (!normalizedQuery) return EMPTY_SET;
+    return new Set(allNodes.filter((node) => getNodeSearchText(node).includes(normalizedQuery)).map((node) => node.id));
+  }, [allNodes, normalizedQuery]);
 
   const autoExpanded = useMemo(() => getSearchExpansionIds(matches, nodesById), [matches, nodesById]);
-  const listSuggestions = useMemo(() => getSearchSuggestions(allNodes, query), [allNodes, query]);
-  const mapSuggestions = useMemo(() => getSearchSuggestions(mindMapNodes, query), [mindMapNodes, query]);
-
+  const listSuggestions = useMemo(() => getSearchSuggestions(allNodes, normalizedQuery), [allNodes, normalizedQuery]);
   const activeNode = nodesById[activeId] || allNodes[0];
   const breadcrumb = useMemo(
-    () => (hierarchyData && activeNode ? buildBreadcrumb(hierarchyData, activeNode) : []),
+    () => (hierarchyData && activeNode ? buildBreadcrumb(hierarchyData, activeNode) : EMPTY_ARRAY),
     [activeNode, hierarchyData],
   );
 
@@ -130,7 +93,6 @@ export default function App() {
   };
 
   const handleCollapseAll = () => {
-    if (!hierarchyData) return;
     setExpanded(new Set([hierarchyData.id]));
   };
 
@@ -148,14 +110,9 @@ export default function App() {
     setQuery("");
   };
 
-  const handlePickMindMapSuggestion = (node) => {
-    setQuery(node.title);
-    setActiveId(node.id);
-  };
-
   const header = <AppHeader screen={screen} onScreenChange={setScreen} />;
 
-  if (loadingState.loading) {
+  if (!data && !error) {
     return (
       <RoutePageLayout
         header={header}
@@ -166,13 +123,11 @@ export default function App() {
             description="Готуємо структуру, щоб можна було перейти до списку та візуальної карти."
           />
         }
-        panelId={screen === "list" ? "list-panel" : "mindmap-panel"}
-        tabId={screen === "list" ? "list-tab" : "mindmap-tab"}
       />
     );
   }
 
-  if (loadingState.error || !hierarchyData || !activeNode) {
+  if (error || !hierarchyData || !activeNode) {
     return (
       <RoutePageLayout
         header={header}
@@ -180,80 +135,44 @@ export default function App() {
         tiles={
           <LoadingState
             title="Не вдалося відкрити карту"
-            description={loadingState.error || "Дані не знайдено."}
+            description={error || "Дані не знайдено."}
           />
         }
-        panelId={screen === "list" ? "list-panel" : "mindmap-panel"}
-        tabId={screen === "list" ? "list-tab" : "mindmap-tab"}
       />
     );
   }
 
-  const sharedTop =
-    screen === "list" ? (
-      <HeroSearchPanel
-        className="hero-grid"
-        content={
-          <>
-            <p className="eyebrow">Про проєкт</p>
-            <h1>Карта структури країни</h1>
-            <p className="hero-text">
-              Цей проєкт допомагає швидко орієнтуватися в установах, їхніх ролях і зв&apos;язках між собою. Тут можна знайти потрібний вузол, подивитися його місце в ієрархії та перейти до візуальної карти взаємодій.
-            </p>
-          </>
-        }
-        search={{
-          searchId: "hierarchy-search",
-          searchControlsId: "hierarchy-search-results",
-          query,
-          setQuery: (value) => startTransition(() => setQuery(value)),
-          placeholder: "Пошук",
-          activeId,
-          typeMeta,
-          suggestions: listSuggestions,
-          onPick: (node) => handleRevealNode(node.id),
-        }}
-      />
-    ) : (
-      <HeroSearchPanel
-        className="hero-grid hero-grid-wide"
-        content={
-          <>
-            <p className="eyebrow">Вид мапи</p>
-            <h1>Мапа елементів і зв&apos;язків</h1>
-            <p className="hero-text">
-              Тут той самий зміст показаний як мережа взаємодій між ключовими вузлами системи.
-            </p>
-          </>
-        }
-        search={{
-          searchId: "mindmap-search",
-          searchControlsId: "mindmap-search-results",
-          query,
-          setQuery: (value) => startTransition(() => setQuery(value)),
-          placeholder: "Пошук вузлів на мапі...",
-          activeId,
-          typeMeta,
-          suggestions: mapSuggestions,
-          onPick: handlePickMindMapSuggestion,
-          note: "Можна тягнути полотно, масштабувати колесом миші та вибирати зв'язки зі списку нижче.",
-          statusMessage: query.trim()
-            ? mapSuggestions.length
-              ? `Знайдено ${mapSuggestions.length} вузлів. Мапа сфокусована на результатах.`
-              : "Нічого не знайдено. Спробуйте інший запит."
-            : "",
-          extra: <RelationLegend relationMeta={relationMeta} />,
-        }}
-      />
-    );
+  const sharedTop = (
+    <HeroSearchPanel
+      className="hero-grid"
+      content={
+        <>
+          <p className="eyebrow">Про проєкт</p>
+          <h1>Карта структури країни</h1>
+          <p className="hero-text">
+            Цей проєкт допомагає швидко орієнтуватися в установах, їхніх ролях і зв&apos;язках між собою. Тут можна знайти потрібний вузол, подивитися його місце в ієрархії та перейти до візуальної карти взаємодій.
+          </p>
+        </>
+      }
+      search={{
+        searchId: "global-search",
+        searchControlsId: "global-search-results",
+        query,
+        setQuery,
+        placeholder: "Пошук",
+        activeId,
+        typeMeta,
+        suggestions: listSuggestions,
+        onPick: (node) => handleRevealNode(node.id),
+      }}
+    />
+  );
 
   return screen === "list" ? (
     <RoutePageLayout
       header={header}
       top={sharedTop}
       tiles={<HierarchyOverviewTiles allNodes={allNodes} />}
-      panelId="list-panel"
-      tabId="list-tab"
     >
       <HierarchyScreen
         query={query}
@@ -282,30 +201,28 @@ export default function App() {
           activeNodeTitle={activeNode.title}
         />
       }
-      panelId="mindmap-panel"
-      tabId="mindmap-tab"
-      className="mindmap-page"
     >
-      <MindMapScreen
-        query={query}
-        activeNode={activeNode}
-        activeId={activeId}
-        nodesById={nodesById}
-        relations={relations}
-        typeMeta={typeMeta}
-        relationMeta={relationMeta}
-        world={world}
-        onSelect={setActiveId}
-      />
-
-      <section className="mindmap-details-wrap">
-        <NodeDetailsPanel
-          activeNode={activeNode}
-          breadcrumb={breadcrumb}
+      <section>
+        <MindMapScreen
+          query={query}
+          activeId={activeId}
+          nodesById={nodesById}
+          relations={relations}
           typeMeta={typeMeta}
+          relationMeta={relationMeta}
+          world={world}
           onSelect={setActiveId}
         />
-        <MindMapHelpPanel />
+
+        <div className="mindmap-sidebar-stack">
+          <NodeDetailsPanel
+            activeNode={activeNode}
+            breadcrumb={breadcrumb}
+            typeMeta={typeMeta}
+            onSelect={setActiveId}
+          />
+          <MindMapHelpPanel />
+        </div>
       </section>
     </RoutePageLayout>
   );

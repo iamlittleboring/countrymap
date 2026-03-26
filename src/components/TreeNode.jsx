@@ -1,4 +1,3 @@
-import { memo, useEffect, useRef } from "react";
 import { getChildren } from "../lib/mapUtils";
 
 function TreeNode({
@@ -19,21 +18,10 @@ function TreeNode({
   const isMatch = matches.has(node.id);
   const meta = typeMeta[node.type] || { label: node.type };
   const indent = depth * 16;
-  const nodeRef = useRef(null);
-
-  useEffect(() => {
-    if (!isActive) return;
-
-    nodeRef.current?.scrollIntoView({
-      block: "nearest",
-      behavior: "smooth",
-    });
-  }, [isActive]);
 
   return (
     <div className="tree-node-wrap">
       <button
-        ref={nodeRef}
         type="button"
         className={[
           "tree-node",
@@ -60,7 +48,11 @@ function TreeNode({
           <span className="tree-node-title">{node.title}</span>
           <span className="tree-node-description">{node.description}</span>
         </span>
-        {hasChildren && <span className={`tree-node-chevron ${isOpen ? "open" : ""}`}>{isOpen ? "Згорнути" : "Розгорнути"}</span>}
+        {hasChildren && (
+          <span className={isOpen ? "tree-node-chevron open" : "tree-node-chevron"}>
+            {isOpen ? "Згорнути" : "Розгорнути"}
+          </span>
+        )}
       </button>
 
       {hasChildren && isOpen && (
@@ -85,4 +77,4 @@ function TreeNode({
   );
 }
 
-export default memo(TreeNode);
+export default TreeNode;

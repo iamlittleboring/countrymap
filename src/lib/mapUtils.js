@@ -1,14 +1,11 @@
 export function flattenTree(node, path = []) {
   const current = { ...node, path };
-  return [
-    current,
-    ...((node.children || []).flatMap((child) => flattenTree(child, [...path, node.id]))),
-  ];
+  return [current, ...getChildren(node).flatMap((child) => flattenTree(child, [...path, node.id]))];
 }
 
 export function findNodeById(node, id) {
   if (node.id === id) return node;
-  for (const child of node.children || []) {
+  for (const child of getChildren(node)) {
     const found = findNodeById(child, id);
     if (found) return found;
   }
@@ -55,8 +52,8 @@ export function getSearchExpansionIds(matches, nodesById) {
 }
 
 export function getSearchSuggestions(nodes, query, limit = 6) {
-  const normalizedQuery = query.trim().toLowerCase();
-  if (!normalizedQuery) return [];
+  if (!query) return [];
+  const normalizedQuery = query.toLowerCase();
 
   return nodes
     .map((node) => {
