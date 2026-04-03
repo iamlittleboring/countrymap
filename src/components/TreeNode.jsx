@@ -1,3 +1,4 @@
+import useUi from "./app/useUi";
 import { getChildren } from "../lib/mapUtils";
 
 function TreeNode({
@@ -11,6 +12,7 @@ function TreeNode({
   onSelect,
   onToggle,
 }) {
+  const { copy } = useUi();
   const children = getChildren(node);
   const hasChildren = children.length > 0;
   const isOpen = expanded.has(node.id) || autoExpanded.has(node.id);
@@ -43,14 +45,14 @@ function TreeNode({
         <span className="tree-node-copy">
           <span className="tree-node-meta-row">
             <span className="tree-node-type">{meta.label}</span>
-            <span className="level-pill">Рівень {node.level || 1}</span>
+            <span className="level-pill">{copy.levelLabel(node.level || 1)}</span>
           </span>
           <span className="tree-node-title">{node.title}</span>
           <span className="tree-node-description">{node.description}</span>
         </span>
         {hasChildren && (
           <span className={isOpen ? "tree-node-chevron open" : "tree-node-chevron"}>
-            {isOpen ? "Згорнути" : "Розгорнути"}
+            {isOpen ? copy.collapseAll : copy.expandAll}
           </span>
         )}
       </button>

@@ -1,22 +1,25 @@
+import useUi from "./app/useUi";
 import OverviewTile from "./OverviewTile";
 
 export default function MindMapOverviewTiles({ graphNodeCount, visibleRelationCount, activeNodeTitle }) {
+  const { copy } = useUi();
+
   return (
     <section className="mindmap-overview-grid">
       <OverviewTile
-        title="Вузли"
+        title={copy.nodesTitle}
         subtitle={graphNodeCount}
-        text="Елементи, які відображені на мапі."
+        text={copy.nodesText}
       />
       <OverviewTile
-        title="Зв&apos;язки"
+        title={copy.relationsTitle}
         subtitle={visibleRelationCount}
-        text="Стрілки між вузлами на полотні."
+        text={copy.relationsText}
       />
       <OverviewTile
-        title="Активний вузол"
+        title={copy.activeNodeTitle}
         subtitle={activeNodeTitle}
-        text="Поточний вибраний елемент."
+        text={copy.activeNodeText}
       />
     </section>
   );

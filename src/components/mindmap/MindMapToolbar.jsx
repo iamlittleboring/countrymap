@@ -1,3 +1,4 @@
+import useUi from "../app/useUi";
 import IconButton from "./IconButton";
 
 export default function MindMapToolbar({
@@ -14,6 +15,8 @@ export default function MindMapToolbar({
   onToggleFullscreen,
   onFocusActive,
 }) {
+  const { copy } = useUi();
+
   return (
     <header
       className={["panel-header", "mindmap-canvas-header", isFullscreen ? "mindmap-canvas-header-fullscreen" : ""]
@@ -21,23 +24,23 @@ export default function MindMapToolbar({
         .join(" ")}
     >
       <div>
-        <p className="eyebrow">Мапа взаємодій</p>
-        <h2>Глобальна мапа</h2>
+        <p className="eyebrow">{copy.mindMapEyebrow}</p>
+        <h2>{copy.globalMindMap}</h2>
       </div>
       <div className="mindmap-stats">
-        <span>{graphNodeCount} вузлів</span>
-        <span>{visibleRelationCount} зв&apos;язків</span>
-        <span>Масштаб {Math.round(zoom * 100)}%</span>
+        <span>{copy.nodeCountLabel(graphNodeCount)}</span>
+        <span>{copy.relationCountLabel(visibleRelationCount)}</span>
+        <span>{copy.zoomLabel(zoom)}</span>
       </div>
       <div className="mindmap-controls">
-        <IconButton label="Зменшити масштаб" icon={minusIcon} onClick={onZoomOut} />
-        <IconButton label="Збільшити масштаб" icon={plusIcon} onClick={onZoomIn} />
+        <IconButton label={copy.zoomOut} icon={minusIcon} onClick={onZoomOut} />
+        <IconButton label={copy.zoomIn} icon={plusIcon} onClick={onZoomIn} />
         <IconButton
-          label={isFullscreen ? "Вийти з повноекранного режиму" : "Повноекранний режим"}
+          label={isFullscreen ? copy.exitFullscreen : copy.enterFullscreen}
           icon={fitToScreenIcon}
           onClick={onToggleFullscreen}
         />
-        <IconButton label="До активного вузла" icon={focusTargetIcon} onClick={onFocusActive} />
+        <IconButton label={copy.focusActiveNode} icon={focusTargetIcon} onClick={onFocusActive} />
       </div>
     </header>
   );

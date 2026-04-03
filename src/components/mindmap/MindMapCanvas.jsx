@@ -1,8 +1,15 @@
+import { memo, useMemo } from "react";
 import NodeCard from "../NodeCard";
 import { FALLBACK_NODE_SIZE } from "../../lib/mindmap/constants";
-import { getEdgePoint, getLinePoints, getNodeCenter } from "../../lib/mindmap/geometry";
+import {
+  getEdgePoint,
+  getNodeCenter,
+  getOffsetLinePoints,
+  getPerpendicularOffset,
+} from "../../lib/mindmap/geometry";
+import { getCanonicalRelationPair, getRelationOffsets } from "../../lib/mindmap/relationLayout";
 
-export default function MindMapCanvas({
+function MindMapCanvas({
   viewportRef,
   isFullscreen,
   world,
@@ -14,20 +21,22 @@ export default function MindMapCanvas({
   nodeSizes,
   activeId,
   selectedRelationKey,
-  setSelectedRelationKey,
   graphNodes,
   draggingNodeId,
   hasSearch,
   matchedNodeIds,
+  showCtrlHint,
   typeMeta,
   onSelect,
+  onSelectRelation,
   setNodeElement,
   onBeginDrag,
   onDrag,
   onEndDrag,
-  onWheel,
   onBeginNodeDrag,
 }) {
+  const relationOffsets = useMemo(() => getRelationOffsets(visibleRelations), [visibleRelations]);
+
   return (
     <div
       ref={viewportRef}
@@ -37,8 +46,19 @@ export default function MindMapCanvas({
       onPointerUp={onEndDrag}
       onPointerLeave={onEndDrag}
       onPointerCancel={onEndDrag}
-      onWheel={onWheel}
     >
+      <div
+        className={[
+          "mindmap-zoom-overlay",
+          showCtrlHint ? "mindmap-zoom-overlay-active" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        aria-hidden="true"
+      >
+        <strong className="mindmap-zoom-overlay-title">Ctrl + scroll</strong>
+        <span className="mindmap-zoom-overlay-copy">to zoom the map</span>
+      </div>
       <div
         className="mindmap-world"
         style={{
@@ -74,10 +94,37 @@ export default function MindMapCanvas({
           {visibleRelations.map((relation) => {
             const fromCenter = getNodeCenter(nodePositions[relation.from], nodeSizes[relation.from] || FALLBACK_NODE_SIZE);
             const toCenter = getNodeCenter(nodePositions[relation.to], nodeSizes[relation.to] || FALLBACK_NODE_SIZE);
-            const from = getEdgePoint(fromCenter, toCenter, nodeSizes[relation.from] || FALLBACK_NODE_SIZE);
-            const to = getEdgePoint(toCenter, fromCenter, nodeSizes[relation.to] || FALLBACK_NODE_SIZE);
             const meta = relationMeta[relation.type];
-            const pathDefinition = getLinePoints(from, to);
+            const relationOffset = relationOffsets.get(relation.id) || 0;
+            const [canonicalFromId, canonicalToId] = getCanonicalRelationPair(relation.from, relation.to);
+            const canonicalFromCenter = getNodeCenter(
+              nodePositions[canonicalFromId],
+              nodeSizes[canonicalFromId] || FALLBACK_NODE_SIZE,
+            );
+            const canonicalToCenter = getNodeCenter(
+              nodePositions[canonicalToId],
+              nodeSizes[canonicalToId] || FALLBACK_NODE_SIZE,
+            );
+            const centerOffset = getPerpendicularOffset(canonicalFromCenter, canonicalToCenter, relationOffset);
+            const shiftedFromCenter = {
+              x: fromCenter.x + centerOffset.x,
+              y: fromCenter.y + centerOffset.y,
+            };
+            const shiftedToCenter = {
+              x: toCenter.x + centerOffset.x,
+              y: toCenter.y + centerOffset.y,
+            };
+            const from = getEdgePoint(
+              shiftedFromCenter,
+              shiftedToCenter,
+              nodeSizes[relation.from] || FALLBACK_NODE_SIZE,
+            );
+            const to = getEdgePoint(
+              shiftedToCenter,
+              shiftedFromCenter,
+              nodeSizes[relation.to] || FALLBACK_NODE_SIZE,
+            );
+            const pathDefinition = getOffsetLinePoints(from, to);
             const isRelated = activeId === relation.from || activeId === relation.to;
             const isSelected = selectedRelationKey === relation.id;
 
@@ -91,6 +138,7 @@ export default function MindMapCanvas({
                   strokeDasharray={meta.dash}
                   opacity={isSelected ? 1 : isRelated ? 1 : 0.45}
                   markerEnd={`url(#marker-${relation.type})`}
+                  className="mindmap-edge"
                 />
                 <path
                   d={pathDefinition}
@@ -101,7 +149,7 @@ export default function MindMapCanvas({
                   onPointerDown={(event) => event.stopPropagation()}
                   onClick={(event) => {
                     event.stopPropagation();
-                    setSelectedRelationKey(relation.id);
+                    onSelectRelation(relation.id);
                   }}
                 />
               </g>
@@ -141,3 +189,5 @@ export default function MindMapCanvas({
     </div>
   );
 }
+
+export default memo(MindMapCanvas);

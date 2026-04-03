@@ -1,5 +1,6 @@
-import TreeNode from "../components/TreeNode";
 import NodeDetailsPanel from "../components/NodeDetailsPanel";
+import TreeNode from "../components/TreeNode";
+import useUi from "../components/app/useUi";
 
 export default function HierarchyScreen({
   query,
@@ -16,6 +17,7 @@ export default function HierarchyScreen({
   onExpandAll,
   onCollapseAll,
 }) {
+  const { copy } = useUi();
   const hasQuery = query.trim().length > 0;
 
   return (
@@ -23,22 +25,22 @@ export default function HierarchyScreen({
       <article className="panel panel-hierarchy">
         <header className="panel-header">
           <div>
-            <p className="eyebrow">Структура</p>
-            <h2>Ієрархія</h2>
+            <p className="eyebrow">{copy.structureEyebrow}</p>
+            <h2>{copy.hierarchyTitle}</h2>
           </div>
           <div className="header-actions">
             <button type="button" className="ghost-button" onClick={onExpandAll}>
-              Розгорнути все
+              {copy.expandAll}
             </button>
             <button type="button" className="ghost-button" onClick={onCollapseAll}>
-              Згорнути
+              {copy.collapseAll}
             </button>
           </div>
         </header>
 
         <div className="tree-list">
           {hasQuery && matches.size === 0 ? (
-            <div className="empty-state">Нічого не знайдено. Спробуйте інший запит.</div>
+            <div className="empty-state">{copy.tryAnotherQuery}</div>
           ) : (
             <TreeNode
               node={hierarchyData}

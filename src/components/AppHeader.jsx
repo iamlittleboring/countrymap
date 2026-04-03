@@ -1,28 +1,51 @@
 import { APP_TABS } from "../lib/appTabs";
+import { LANGUAGE_OPTIONS, THEME_OPTIONS } from "../lib/uiCopy";
+import SegmentedControl from "./SegmentedControl";
+import useUi from "./app/useUi";
 
 export default function AppHeader({ screen, onScreenChange }) {
+  const { theme, setTheme, language, setLanguage, copy } = useUi();
+  const tabLabels = {
+    list: copy.listTab,
+    mindmap: copy.mindMapTab,
+  };
+  const themeLabels = {
+    light: copy.lightTheme,
+    dark: copy.darkTheme,
+  };
+
   return (
     <header className="app-topbar">
       <div>
-        <p className="eyebrow">Навігація</p>
-        <h2>Карта країни</h2>
+        <p className="eyebrow">{copy.navEyebrow}</p>
+        <h2>{copy.appTitle}</h2>
       </div>
-      <div className="view-switch" aria-label="Екрани застосунку">
-        {APP_TABS.map((tab) => {
-          const isActive = screen === tab.id;
 
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              className={isActive ? "view-tab active" : "view-tab"}
-              onClick={() => onScreenChange(tab.id)}
-              aria-pressed={isActive}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
+      <div className="header-controls">
+        <SegmentedControl
+          label={copy.pageSwitchLabel}
+          ariaLabel={copy.pageSwitchAria}
+          options={APP_TABS}
+          value={screen}
+          getOptionLabel={(option) => tabLabels[option.id]}
+          onChange={onScreenChange}
+        />
+        <SegmentedControl
+          label={copy.themeSwitchLabel}
+          ariaLabel={copy.themeSwitchLabel}
+          options={THEME_OPTIONS}
+          value={theme}
+          getOptionLabel={(option) => themeLabels[option.id]}
+          onChange={setTheme}
+        />
+        <SegmentedControl
+          label={copy.languageSwitchLabel}
+          ariaLabel={copy.languageSwitchLabel}
+          options={LANGUAGE_OPTIONS}
+          value={language}
+          getOptionLabel={(option) => option.shortLabel}
+          onChange={setLanguage}
+        />
       </div>
     </header>
   );

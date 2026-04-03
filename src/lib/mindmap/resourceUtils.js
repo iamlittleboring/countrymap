@@ -1,9 +1,9 @@
-export function formatVerifyLabel(url, index) {
+export function formatVerifyLabel(url, index, copy = {}) {
   try {
     const { hostname } = new URL(url);
-    return `Перевірити: ${hostname.replace(/^www\./, "")}`;
+    return `${copy.verifyPrefix || "Verify:"} ${hostname.replace(/^www\./, "")}`;
   } catch {
-    return `Перевірити джерело ${index + 1}`;
+    return `${copy.verifyFallback || "Verify source"} ${index + 1}`;
   }
 }
 

@@ -1,12 +1,15 @@
+import useUi from "../app/useUi";
 import { formatVerifyLabel } from "../../lib/mindmap/resourceUtils";
 
 export default function RelationLinks({ node, resources }) {
+  const { copy } = useUi();
+
   return (
     <div className="relation-links-card">
       <h3>{node.title}</h3>
       {resources?.site && (
         <a href={resources.site} target="_blank" rel="noreferrer">
-          Офіційний сайт
+          {copy.officialSite}
         </a>
       )}
       {(resources?.socials || []).map((item) => (
@@ -16,7 +19,7 @@ export default function RelationLinks({ node, resources }) {
       ))}
       {(resources?.verify || []).map((item, index) => (
         <a key={item} href={item} target="_blank" rel="noreferrer">
-          {formatVerifyLabel(item, index)}
+          {formatVerifyLabel(item, index, copy)}
         </a>
       ))}
     </div>

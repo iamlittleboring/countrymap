@@ -40,6 +40,44 @@ export function getLinePoints(from, to) {
   return `M ${from.x} ${from.y} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${to.x} ${to.y}`;
 }
 
+export function getPerpendicularOffset(from, to, offset = 0) {
+  if (!offset) {
+    return { x: 0, y: 0 };
+  }
+
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const length = Math.hypot(dx, dy);
+
+  if (!length) {
+    return { x: 0, y: 0 };
+  }
+
+  return {
+    x: (-dy / length) * offset,
+    y: (dx / length) * offset,
+  };
+}
+
+export function getOffsetLinePoints(from, to, offset = 0) {
+  if (!offset) {
+    return getLinePoints(from, to);
+  }
+
+  const { x: offsetX, y: offsetY } = getPerpendicularOffset(from, to, offset);
+
+  return getLinePoints(
+    {
+      x: from.x + offsetX,
+      y: from.y + offsetY,
+    },
+    {
+      x: to.x + offsetX,
+      y: to.y + offsetY,
+    },
+  );
+}
+
 export function getContentBounds(graphNodes, nodeSizes) {
   if (!graphNodes.length) {
     return { minX: 0, minY: 0, maxX: FALLBACK_NODE_SIZE.width, maxY: FALLBACK_NODE_SIZE.height };

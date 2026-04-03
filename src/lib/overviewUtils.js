@@ -10,9 +10,8 @@ export function getHierarchyLevels(allNodes) {
     .sort(([left], [right]) => left - right)
     .map(([level, count]) => ({
       id: `level-${level}`,
-      title: `Рівень ${level}`,
-      subtitle: `${count} вузлів`,
-      text: "Ключові об'єкти цього рівня у загальній структурі.",
+      level,
+      count,
     }));
 }
 

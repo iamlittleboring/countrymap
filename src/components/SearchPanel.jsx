@@ -1,10 +1,11 @@
+import useUi from "./app/useUi";
 import SearchSuggestions from "./SearchSuggestions";
 
 export default function SearchPanel({
   searchId,
   query,
   setQuery,
-  placeholder = "Пошук",
+  placeholder,
   searchControlsId,
   activeId,
   typeMeta,
@@ -14,6 +15,7 @@ export default function SearchPanel({
   statusMessage,
   extra,
 }) {
+  const { copy } = useUi();
   const hasQuery = Boolean(query.trim());
   const noteId = note ? `${searchId}-note` : undefined;
 
@@ -25,7 +27,7 @@ export default function SearchPanel({
             id={searchId}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder={placeholder}
+            placeholder={placeholder || copy.searchPlaceholder}
             aria-expanded={hasQuery}
             aria-controls={searchControlsId}
             aria-describedby={noteId}
