@@ -4,13 +4,20 @@ import { FALLBACK_NODE_SIZE } from "./constants";
 export default function useNodeSizeRegistry() {
   const [nodeSizes, setNodeSizes] = useState({});
   const resizeObserversRef = useRef({});
+  const elementsRef = useRef({});
 
   const setNodeElement = useCallback((id, element) => {
+    if (elementsRef.current[id] === element) {
+      return;
+    }
+
     const previousObserver = resizeObserversRef.current[id];
     if (previousObserver) {
       previousObserver.disconnect();
       delete resizeObserversRef.current[id];
     }
+
+    elementsRef.current[id] = element;
 
     if (!element) return;
 
