@@ -86,6 +86,22 @@ export default function useMindMapInteractions({
   );
 
   const contentBounds = useMemo(() => getContentBounds(graphNodes, nodeSizes), [graphNodes, nodeSizes]);
+
+  const panRef = useRef(pan);
+  const zoomRef = useRef(zoom);
+  const contentBoundsRef = useRef(contentBounds);
+  const nodePositionsRef = useRef(nodePositions);
+
+  useEffect(() => {
+    panRef.current = pan;
+    zoomRef.current = zoom;
+    contentBoundsRef.current = contentBounds;
+    nodePositionsRef.current = nodePositions;
+  }, [pan, zoom, contentBounds, nodePositions]);
+
+  const dragRafIdRef = useRef(null);
+  const pendingDragEventRef = useRef(null);
+
   const { applyZoom, fitGraph, focusNode, setZoomState } = useMindMapViewport({
     viewportRef,
     graphNodes,
@@ -108,6 +124,9 @@ export default function useMindMapInteractions({
     return () => {
       if (ctrlHintTimeoutRef.current) {
         clearTimeout(ctrlHintTimeoutRef.current);
+      }
+      if (dragRafIdRef.current) {
+        cancelAnimationFrame(dragRafIdRef.current);
       }
     };
   }, []);
@@ -135,9 +154,10 @@ export default function useMindMapInteractions({
     const rect = viewport.getBoundingClientRect();
     const cursorX = event.clientX - rect.left;
     const cursorY = event.clientY - rect.top;
+    const currentZoom = zoomRef.current;
     const zoomFactor = event.deltaY < 0 ? 1.12 : 0.9;
-    setZoomState(Number((zoom * zoomFactor).toFixed(3)), cursorX, cursorY);
-  }, [setZoomState, zoom]);
+    setZoomState(Number((currentZoom * zoomFactor).toFixed(3)), cursorX, cursorY);
+  }, [setZoomState]);
 
   useEffect(() => {
     if (!viewportSize.width || !viewportSize.height || !graphNodes.length) return;
@@ -196,14 +216,18 @@ export default function useMindMapInteractions({
       pointerId: event.pointerId,
       startX: event.clientX,
       startY: event.clientY,
-      startPanX: pan.x,
-      startPanY: pan.y,
+      startPanX: panRef.current.x,
+      startPanY: panRef.current.y,
     };
 
     viewportRef.current?.setPointerCapture(event.pointerId);
-  }, [pan.x, pan.y]);
+  }, []);
 
-  const onDrag = useCallback((event) => {
+  const processDrag = useCallback(() => {
+    dragRafIdRef.current = null;
+    const event = pendingDragEventRef.current;
+    if (!event) return;
+
     if (nodeDragRef.current.dragging && nodeDragRef.current.pointerId === event.pointerId) {
       const { nodeId, startNodeX, startNodeY, startX, startY } = nodeDragRef.current;
       const rawDeltaX = event.clientX - startX;
@@ -212,8 +236,9 @@ export default function useMindMapInteractions({
       if (Math.hypot(rawDeltaX, rawDeltaY) < NODE_DRAG_THRESHOLD) return;
 
       nodeDragRef.current.moved = true;
-      const deltaX = rawDeltaX / zoom;
-      const deltaY = rawDeltaY / zoom;
+      const currentZoom = zoomRef.current;
+      const deltaX = rawDeltaX / currentZoom;
+      const deltaY = rawDeltaY / currentZoom;
 
       setNodeOverrides((previous) => ({
         ...previous,
@@ -237,14 +262,34 @@ export default function useMindMapInteractions({
       },
       viewport.clientWidth,
       viewport.clientHeight,
-      contentBounds,
-      zoom,
+      contentBoundsRef.current,
+      zoomRef.current,
     );
 
     setPan(nextPan);
-  }, [contentBounds, zoom]);
+  }, []);
+
+  const onDrag = useCallback((event) => {
+    if (!nodeDragRef.current.dragging && !dragRef.current.dragging) return;
+
+    pendingDragEventRef.current = {
+      pointerId: event.pointerId,
+      clientX: event.clientX,
+      clientY: event.clientY,
+    };
+
+    if (!dragRafIdRef.current) {
+      dragRafIdRef.current = requestAnimationFrame(processDrag);
+    }
+  }, [processDrag]);
 
   const endDrag = useCallback((event) => {
+    if (dragRafIdRef.current) {
+      cancelAnimationFrame(dragRafIdRef.current);
+      dragRafIdRef.current = null;
+    }
+    pendingDragEventRef.current = null;
+
     if (nodeDragRef.current.pointerId === event.pointerId) {
       if (!nodeDragRef.current.moved && nodeDragRef.current.nodeId) {
         onSelect(nodeDragRef.current.nodeId);
@@ -266,7 +311,7 @@ export default function useMindMapInteractions({
   }, [onSelect]);
 
   const beginNodeDrag = useCallback((nodeId, event) => {
-    const position = nodePositions[nodeId];
+    const position = nodePositionsRef.current[nodeId];
     if (!position) return;
 
     event.stopPropagation();
@@ -284,7 +329,7 @@ export default function useMindMapInteractions({
 
     setDraggingNodeId(nodeId);
     event.currentTarget.setPointerCapture(event.pointerId);
-  }, [nodePositions]);
+  }, []);
 
   return {
     fullscreenRef,

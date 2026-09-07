@@ -9,6 +9,85 @@ import {
 } from "../../lib/mindmap/geometry";
 import { getCanonicalRelationPair, getRelationOffsets } from "../../lib/mindmap/relationLayout";
 
+const RelationEdge = memo(function RelationEdge({
+  relation,
+  meta,
+  relationOffset,
+  fromPos,
+  toPos,
+  fromSize,
+  toSize,
+  canonicalFromPos,
+  canonicalToPos,
+  canonicalFromSize,
+  canonicalToSize,
+  isRelated,
+  isSelected,
+  onSelectRelation,
+}) {
+  const pathDefinition = useMemo(() => {
+    if (!fromPos || !toPos || !canonicalFromPos || !canonicalToPos) return "";
+
+    const fromCenter = getNodeCenter(fromPos, fromSize);
+    const toCenter = getNodeCenter(toPos, toSize);
+    const canonicalFromCenter = getNodeCenter(canonicalFromPos, canonicalFromSize);
+    const canonicalToCenter = getNodeCenter(canonicalToPos, canonicalToSize);
+
+    const centerOffset = getPerpendicularOffset(canonicalFromCenter, canonicalToCenter, relationOffset);
+    const shiftedFromCenter = {
+      x: fromCenter.x + centerOffset.x,
+      y: fromCenter.y + centerOffset.y,
+    };
+    const shiftedToCenter = {
+      x: toCenter.x + centerOffset.x,
+      y: toCenter.y + centerOffset.y,
+    };
+    const from = getEdgePoint(shiftedFromCenter, shiftedToCenter, fromSize);
+    const to = getEdgePoint(shiftedToCenter, shiftedFromCenter, toSize);
+
+    return getOffsetLinePoints(from, to);
+  }, [
+    fromPos,
+    toPos,
+    canonicalFromPos,
+    canonicalToPos,
+    fromSize,
+    toSize,
+    canonicalFromSize,
+    canonicalToSize,
+    relationOffset,
+  ]);
+
+  if (!pathDefinition) return null;
+
+  return (
+    <g>
+      <path
+        d={pathDefinition}
+        fill="none"
+        stroke={meta.stroke}
+        strokeWidth={isRelated ? 4 : 2.5}
+        strokeDasharray={meta.dash}
+        opacity={isSelected ? 1 : isRelated ? 1 : 0.45}
+        markerEnd={`url(#marker-${relation.type})`}
+        className="mindmap-edge"
+      />
+      <path
+        d={pathDefinition}
+        fill="none"
+        stroke="transparent"
+        strokeWidth="24"
+        className="mindmap-edge-hitbox"
+        onPointerDown={(event) => event.stopPropagation()}
+        onClick={(event) => {
+          event.stopPropagation();
+          onSelectRelation(relation.id);
+        }}
+      />
+    </g>
+  );
+});
+
 function MindMapCanvas({
   viewportRef,
   isFullscreen,
@@ -91,70 +170,25 @@ function MindMapCanvas({
             ))}
           </defs>
 
-          {visibleRelations.map((relation) => {
-            const fromCenter = getNodeCenter(nodePositions[relation.from], nodeSizes[relation.from] || FALLBACK_NODE_SIZE);
-            const toCenter = getNodeCenter(nodePositions[relation.to], nodeSizes[relation.to] || FALLBACK_NODE_SIZE);
-            const meta = relationMeta[relation.type];
-            const relationOffset = relationOffsets.get(relation.id) || 0;
-            const [canonicalFromId, canonicalToId] = getCanonicalRelationPair(relation.from, relation.to);
-            const canonicalFromCenter = getNodeCenter(
-              nodePositions[canonicalFromId],
-              nodeSizes[canonicalFromId] || FALLBACK_NODE_SIZE,
-            );
-            const canonicalToCenter = getNodeCenter(
-              nodePositions[canonicalToId],
-              nodeSizes[canonicalToId] || FALLBACK_NODE_SIZE,
-            );
-            const centerOffset = getPerpendicularOffset(canonicalFromCenter, canonicalToCenter, relationOffset);
-            const shiftedFromCenter = {
-              x: fromCenter.x + centerOffset.x,
-              y: fromCenter.y + centerOffset.y,
-            };
-            const shiftedToCenter = {
-              x: toCenter.x + centerOffset.x,
-              y: toCenter.y + centerOffset.y,
-            };
-            const from = getEdgePoint(
-              shiftedFromCenter,
-              shiftedToCenter,
-              nodeSizes[relation.from] || FALLBACK_NODE_SIZE,
-            );
-            const to = getEdgePoint(
-              shiftedToCenter,
-              shiftedFromCenter,
-              nodeSizes[relation.to] || FALLBACK_NODE_SIZE,
-            );
-            const pathDefinition = getOffsetLinePoints(from, to);
-            const isRelated = activeId === relation.from || activeId === relation.to;
-            const isSelected = selectedRelationKey === relation.id;
-
-            return (
-              <g key={relation.id}>
-                <path
-                  d={pathDefinition}
-                  fill="none"
-                  stroke={meta.stroke}
-                  strokeWidth={isRelated ? 4 : 2.5}
-                  strokeDasharray={meta.dash}
-                  opacity={isSelected ? 1 : isRelated ? 1 : 0.45}
-                  markerEnd={`url(#marker-${relation.type})`}
-                  className="mindmap-edge"
-                />
-                <path
-                  d={pathDefinition}
-                  fill="none"
-                  stroke="transparent"
-                  strokeWidth="24"
-                  className="mindmap-edge-hitbox"
-                  onPointerDown={(event) => event.stopPropagation()}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    onSelectRelation(relation.id);
-                  }}
-                />
-              </g>
-            );
-          })}
+          {visibleRelations.map((relation) => (
+            <RelationEdge
+              key={relation.id}
+              relation={relation}
+              meta={relationMeta[relation.type]}
+              relationOffset={relationOffsets.get(relation.id) || 0}
+              fromPos={nodePositions[relation.from]}
+              toPos={nodePositions[relation.to]}
+              fromSize={nodeSizes[relation.from] || FALLBACK_NODE_SIZE}
+              toSize={nodeSizes[relation.to] || FALLBACK_NODE_SIZE}
+              canonicalFromPos={nodePositions[getCanonicalRelationPair(relation.from, relation.to)[0]]}
+              canonicalToPos={nodePositions[getCanonicalRelationPair(relation.from, relation.to)[1]]}
+              canonicalFromSize={nodeSizes[getCanonicalRelationPair(relation.from, relation.to)[0]] || FALLBACK_NODE_SIZE}
+              canonicalToSize={nodeSizes[getCanonicalRelationPair(relation.from, relation.to)[1]] || FALLBACK_NODE_SIZE}
+              isRelated={activeId === relation.from || activeId === relation.to}
+              isSelected={selectedRelationKey === relation.id}
+              onSelectRelation={onSelectRelation}
+            />
+          ))}
         </svg>
 
         {graphNodes.map(({ id, node, position }) => (
